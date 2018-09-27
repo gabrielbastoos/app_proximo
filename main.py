@@ -1,10 +1,18 @@
-import classes.py
-
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
+class Aluno:
+    #construtor
+    def __init__(self, nome, senha):
+        self.nome = nome
+        self.senha = senha
 
-@app.route("/")
+    #verificacao de cadastro
+    def estou_cadastrado(self):
+        return "Estou cadastrado"
+
+
+@app.route("/app_proximo/")
 def hello():
     return render_template('login.html')
 
@@ -22,7 +30,7 @@ def echo():
 
     return render_template('login2.html', text=texto)
 
-@app.route("/cadastro")
+@app.route("/app_proximo/cadastro")
 def cadastro():
     return render_template('cadastro.html')
 
