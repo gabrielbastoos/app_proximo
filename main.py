@@ -36,7 +36,6 @@ def echo2():
     arq = open('lista.txt', 'w')
     arq.write(registro)
     arq.close()
-'''
-
+    '''
     return render_template('cadastrado.html')
 
