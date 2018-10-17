@@ -3,32 +3,29 @@ import classes
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
-@app.route("/app_proximo/")
+@app.route("/")
 def hello():
-    return render_template('login.html')
+    return render_template('acesso.html')
 
 @app.route("/echo", methods=['POST'])
 def echo():
 
     # Aqui sao os dados do formulario
-    texto = request.form['text']
-    senha = request.form['text2']
+    nome = request.form['nome']
+    cpf = request.form['cpf']
+    forma_pagamento = request.form['formas_pagamento']
 
-    #verificacao de senha
-    if texto == "claudio" and senha == "1234":
-        texto = "Acesso permitido"
-    else: texto = "Acesso negado"
+    return render_template('pedido.html', nome=nome, cpf=cpf, forma_pagamento = forma_pagamento)
 
-    return render_template('login2.html', text=texto)
-
-@app.route("/app_proximo/cadastro")
+'''@app.route("/app_proximo/cadastro")
 def cadastro():
     return render_template('cadastro.html')
+'''
 
 @app.route("/echo2", methods=['POST'])
 def echo2():
 
-    # Aqui sao os dados do formulario
+   ''' # Aqui sao os dados do formulario
     texto = request.form['name']
     senha = request.form['pass']
     nota = request.form['grade']
@@ -39,7 +36,7 @@ def echo2():
     arq = open('lista.txt', 'w')
     arq.write(registro)
     arq.close()
+'''
 
-
-    return render_template('cadastrado.html', text=texto)
+    return render_template('cadastrado.html')
 
