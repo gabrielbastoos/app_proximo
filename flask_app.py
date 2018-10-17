@@ -25,7 +25,7 @@ def cadastro():
 @app.route("/echo2", methods=['POST'])
 def echo2():
 
-   ''' # Aqui sao os dados do formulario
+    ''' # Aqui sao os dados do formulario
     texto = request.form['name']
     senha = request.form['pass']
     nota = request.form['grade']
