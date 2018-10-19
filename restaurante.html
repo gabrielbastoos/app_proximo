@@ -10,8 +10,15 @@
 </head>
 <body>
 
-    <form action="" method="POST">
+    <form action="\pedido" method="POST">
+        
+        <p>Escolha o restaurante <input list=restaurantes name = "restaurante_escolhido"></p>
 
+        <datalist id="restaurantes">
+                <option value = {{ restaurantes[0] }}>
+                <option value = {{ restaurantes[1] }}>
+                <option value = {{ restaurantes[2] }}>
+            </datalist>
 
     </form>    
 

@@ -3,9 +3,19 @@ import classes
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
+verdinho = Restaurante("Verdinho")
+verdinho.incluir_pratos()
+verdinho.incluir_bedidas()
+
+spobreto = Restaurante("Spobreto")
+spobreto.incluir_pratos()
+spobreto.incluir_bebidas()
+
+
 @app.route("/")
 def hello():
-    return render_template('acesso.html')
+    lista_restaurantes = [verdinho.nome,spobreto.nome]
+    return render_template('restaurante.html', lista_restaurantes=restaurantes)
 
 @app.route("/echo", methods=['POST'])
 def echo():
@@ -21,6 +31,13 @@ def echo():
 def cadastro():
     return render_template('cadastro.html')
 '''
+
+@app.route("/pedido", methods=['POST'])
+def pedido():
+
+    restaurante_escolhido = request.form['restaurante_escolhido']
+
+    return render_template('pedido.html', nome=nome, cpf=cpf, forma_pagamento = forma_pagamento)
 
 @app.route("/echo2", methods=['POST'])
 def echo2():
