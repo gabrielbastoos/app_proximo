@@ -3,13 +3,13 @@ import classes
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
-verdinho = Restaurante("Verdinho")
-verdinho.incluir_pratos()
-verdinho.incluir_bedidas()
+verdinho = classes.Restaurante("Verdinho")
+verdinho.incluir_prato()
+verdinho.incluir_bedida()
 
-spobreto = Restaurante("Spobreto")
-spobreto.incluir_pratos()
-spobreto.incluir_bebidas()
+spobreto = classes.Restaurante("Spobreto")
+spobreto.incluir_prato()
+spobreto.incluir_bebida()
 
 
 @app.route("/")
