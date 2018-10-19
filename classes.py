@@ -1,13 +1,3 @@
-class Aluno:
-    #construtor
-    def __init__(self, nome, senha):
-        self.nome = nome
-        self.senha = senha
-
-    #verificacao de cadastro
-    def estou_cadastrado(self):
-        return "Estou cadastrado"
-
 class Cliente:
     
     def __init__(self,nome,cpf,refeicao,pagamento):
@@ -34,7 +24,7 @@ class Restaurante:
         self.pratos = pratos
         self.bebidas = bebidas
 
-    def incluir_pratos(self,pratos):
+    def incluir_prato(self,pratos):
         quant_pratos = input("Quantos pratos serão incluídos?")
         for a in range(0, quant_pratos):
             self.pratos[a] = Refeicao()
@@ -51,5 +41,5 @@ class Restaurante:
             self.bebida[a] = Bebida()
             self.bebidas[a].nome = input("Qual nome da bebida %i?" %a)
 
-    return " Bebidas incluídas com sucesso\nTotal de %i bebidas" %quant_bebidas
+        return " Bebidas incluídas com sucesso\nTotal de %i bebidas" %quant_bebidas
             
