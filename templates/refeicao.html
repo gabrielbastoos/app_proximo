@@ -25,7 +25,17 @@
         
         <p>Desejar retirar algum ingrediente da sua refeição ?<input type="checkbox" name="completo" id="completo"> </p>
            
-        <p>Deseja comprar bebida? <input type="checkbox" id="bebida" name="bebida">  </p>
+        ##<p>Deseja comprar bebida? <input type="checkbox" id="bebida" name="bebida">  </p>
+        <p>Escolha a sua bebida <input list="refeicao" name="refeicao"></p>
+
+        <datalist id="bebida">
+              <!--  <option value = {{ refeicao[0] }}>
+                <option value = {{ refeicao[1] }}>
+                <option value = {{ refeicao[2] }}> -->
+                <option value = "Refrigerante">
+                <option value = "Água">
+                <option value = "Nenhuma">    
+            </datalist>
 
         <input value="Acessar" type="submit">
 
