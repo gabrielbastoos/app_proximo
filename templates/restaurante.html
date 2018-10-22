@@ -12,13 +12,15 @@
 
     <form action="\pedido" method="POST">
         
-        <p>Escolha o restaurante <input list=restaurantes name = "restaurante_escolhido"></p>
+        <p>Escolha o restaurante <input list=lista_restaurantes name = "lista_restaurantes"></p>
 
-        <datalist id="restaurantes">
-                <option value = {{ restaurantes[0] }}>
-                <option value = {{ restaurantes[1] }}>
-                <option value = {{ restaurantes[2] }}>
+        <datalist id="lista_restaurantes">
+                <option value = {{ lista_restaurantes[0] }}>
+                <option value = {{ lista_restaurantes[1] }}>
+                <option value = {{ lista_restaurantes[2] }}>
             </datalist>
+
+        <input value="Acessar" type="submit">
 
     </form>    
 

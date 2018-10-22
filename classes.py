@@ -26,17 +26,21 @@ class Restaurante:
             nome = input("Qual nome do prato ?")
             quant_ingredientes = input("Qual a quantidade de ingredientes?")
             for b in range(0,quant_ingredientes):
-                self.pratos[a].ingredientes[b] = input("Ingrediente %i" %b)
-                
-            #INSTANCIAR OBJETO REFEICAO !!!!!!!
+                ingredientes[b] = input("Ingrediente %i: " %b)
+            print(ingredientes)
+            prato[a] = Refeicao(nome,ingredientes)    
+            #Arquivar objeto !!!!!!!
 
-        return " Pratos incluídos com sucesso\nTotal de %i pratos" %quant_pratos
+        print(" Pratos incluídos com sucesso\nTotal de %i pratos" %quant_pratos)
+        
+        return prato
     
     def incluir_bebida(self):
         quant_bebidas = input("Quantas bebidas serão incluídas?")
         for a in range(0, quant_bebidas):
-            self.bebida[a] = Bebida()
-            self.bebidas[a].nome = input("Qual nome da bebida %i?" %a)
+            nome = input("Qual nome da bebida %i?" %a)
+            bebida[a] = Bebida(nome)
 
-        return " Bebidas incluídas com sucesso\nTotal de %i bebidas" %quant_bebidas
-            
+        print(" Bebidas incluídas com sucesso\nTotal de %i bebidas" %quant_bebidas)
+
+        return bebida   

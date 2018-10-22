@@ -4,18 +4,22 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 verdinho = classes.Restaurante("Verdinho")
-verdinho.incluir_prato()
-verdinho.incluir_bedida()
+#verdinho.incluir_prato()
+#verdinho.incluir_bedida()
 
 spobreto = classes.Restaurante("Spobreto")
-spobreto.incluir_prato()
-spobreto.incluir_bebida()
+#spobreto.incluir_prato()
+#spobreto.incluir_bebida()
+
+burguesao = classes.Restaurante("Burguesao")
+#burguesao.incluir_prato()
+#burguesao.incluir_bebida()
 
 
 @app.route("/")
 def hello():
-    lista_restaurantes = [verdinho.nome,spobreto.nome]
-    return render_template('restaurante.html', lista_restaurantes=restaurantes)
+    lista_restaurantes = [verdinho.nome,spobreto.nome,burguesao.nome]
+    return render_template('restaurante.html', lista_restaurantes=lista_restaurantes)
 
 @app.route("/echo", methods=['POST'])
 def echo():
