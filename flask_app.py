@@ -27,9 +27,9 @@ def echo():
 
     return render_template('pedido.html', nome=nome, cpf=cpf, forma_pagamento = forma_pagamento)
 
-'''@app.route("/app_proximo/cadastro")
-def cadastro():
-    return render_template('cadastro.html')
+'''@app.route("/pedido")
+def pedido():
+    return render_template('pedido.html')
 '''
 
 @app.route("/pedido", methods=['POST'])
