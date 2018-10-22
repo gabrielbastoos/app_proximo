@@ -23,7 +23,9 @@ def hello():
 
 @app.route("/echo", methods=['POST'])
 def echo():
-
+    if request.form.get('completo'):
+        return redirect(url_for('ingredientes'))
+    else:
     # Aqui sao os dados do formulario
     nome = request.form['nome']
     cpf = request.form['cpf']
@@ -31,10 +33,10 @@ def echo():
 
     return render_template('pedido.html', nome=nome, cpf=cpf, forma_pagamento = forma_pagamento)
 
-'''@app.route("/pedido")
-def pedido():
-    return render_template('pedido.html')
-'''
+@app.route("/ingredientes", methods=['POST'])
+def ingredientes():
+    return render_template('ingredientes.html')
+
 
 @app.route("/pedido", methods=['POST'])
 def pedido():
