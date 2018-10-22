@@ -12,18 +12,24 @@
 
     <h2><p> {{ refeicao_escolhida }} com {{ bebida_escolhida }}</p></h2>
 
-    <form action="" method="POST">
+    <form action="\dados" method="POST">
 
         <h3><p>Deseja retirar algo ?</p></h3>
 
-        <input type="checkbox" value="Arroz">
-        <input type="checkbox" value="Feijão">
-        <input type="checkbox" value="Tomate">
-        <input type="checkbox" value="Alface">
-        <input type="checkbox" value="Batata Frita">
-        <input type="checkbox" value="Ovo frito">
-        <input type="checkbox" value="Farofa">
-        <input type="checkbox" value="Cenoura">
+        <p>Arroz<input type="checkbox" name="Arroz"></p>
+        <p>Feijão<input type="checkbox" name="Feijão"></p>
+        <p>Tomate<input type="checkbox" name="Tomate"></p>
+        <p>Alface<input type="checkbox" name="Alface"></p>
+        <p>Batata Frita<input type="checkbox" name="Batata Frita"></p>
+        <p>Ovo Frito<input type="checkbox" name="Ovo frito"></p>
+        <p>Farofa<input type="checkbox" name="Farofa"></p>
+        <p>Cenoura<input type="checkbox" name="Cenoura"></p>
+
+        <input type="hidden" value={{ bebida_escolhida }} >
+
+        <input type="hidden" value={{ refeicao_escolhida }} >
+        
+        <input type="submit" value="Enviar pedido">
 
     </form>
 </body>
