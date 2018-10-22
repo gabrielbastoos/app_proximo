@@ -1,18 +1,33 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Seu dados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
 </head>
-
 <body>
+
     
-    Nome: {{ nome }}
-    CPF: {{ cpf }}
-    Forma de Pagamento: {{ forma_pagamento }}
+        <h2><p> {{ refeicao_escolhida }} com {{ bebida_escolhida }}</p></h2>
 
 
-    <form action="/echo2" method="POST">
-        
-        <input value="Fazer pedido" type="submit">
-    </form> 
+    <form action="" method="POST">
+
+            <p>Nome:  <input name="nome"></p>
+            <p>CPF:  <input name="cpf"></p>
+            <p>Forma de Pagamento: <input list=formas_pagamento name = "formas_pagamento"></p>
+            
+            <datalist id="formas_pagamento">
+                <option value = "Dinheiro">
+                <option value = "Cartão de Crédito">
+                <option value = "Cartão de Débito">
+            </datalist>
+            
+            <input value="Comprar refeição" type="submit">
+
+    </form>
 </body>
 </html>
