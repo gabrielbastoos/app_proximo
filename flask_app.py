@@ -31,10 +31,15 @@ def echo():
 
     return render_template('pedido.html', nome=nome, cpf=cpf, forma_pagamento = forma_pagamento)
 
-'''@app.route("/pedido")
-def pedido():
-    return render_template('pedido.html')
-'''
+
+@app.route("/ingrediente", methods=['POST'])
+def ingrediente():
+    
+    refeicao_escolhida = request.form['refeicao']
+    bebida_escolhida = request.form['bebida']
+
+    return render_template('ingrediente.html', refeicao_escolhida=refeicao_escolhida,bebida_escolhida=bebida_escolhida)
+
 
 @app.route("/pedido", methods=['POST'])
 def pedido():
