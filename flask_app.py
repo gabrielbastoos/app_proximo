@@ -39,9 +39,9 @@ def cadastro():
 @app.route("/pedido", methods=['POST'])
 def pedido():
 
-    restaurante_escolhido = request.form['restaurante_escolhido']
+    restaurante_escolhido = request.form['lista_restaurantes']
 
-    return render_template('pedido.html', nome=nome, cpf=cpf, forma_pagamento = forma_pagamento)
+    return render_template('refeicao.html', restaurante_escolhido=restaurante_escolhido)
 
 @app.route("/echo2", methods=['POST'])
 def echo2():

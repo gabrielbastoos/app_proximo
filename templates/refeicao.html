@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Escolha sua refeição</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <h3>{{restaurante_escolhido}}</h3>
+    <form action="\echo" method="POST">
+
+        <p>Escolha a sua refeição <input list="refeicao" name="refeicao"></p>
+
+        <datalist id="refeicao">
+              <!--  <option value = {{ refeicao[0] }}>
+                <option value = {{ refeicao[1] }}>
+                <option value = {{ refeicao[2] }}> -->
+                <option value = "Filé de frango">
+                <option value = "Lasanha">
+                <option value = "Macarrão com Almôndegas">    
+            </datalist>
+        
+        <p>Desejar retirar algum ingrediente da sua refeição ?<input type="checkbox" name="completo" id="completo"> </p>
+           
+        <p>Deseja comprar bebida? <input type="checkbox" id="bebida" name="bebida">  </p>
+
+        <input value="Acessar" type="submit">
+
+
+    </form>
+</body>
+</html>
