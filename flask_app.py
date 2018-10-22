@@ -21,16 +21,13 @@ def hello():
     lista_restaurantes = [verdinho.nome,spobreto.nome,burguesao.nome]
     return render_template('restaurante.html', lista_restaurantes=lista_restaurantes)
 
-@app.route("/echo", methods=['POST'])
-def echo():
 
-    # Aqui sao os dados do formulario
-    nome = request.form['nome']
-    cpf = request.form['cpf']
-    forma_pagamento = request.form['formas_pagamento']
+@app.route("/pedido", methods=['POST'])
+def pedido():
 
-    return render_template('pedido.html', nome=nome, cpf=cpf, forma_pagamento = forma_pagamento)
+    restaurante_escolhido = request.form['lista_restaurantes']
 
+    return render_template('refeicao.html', restaurante_escolhido=restaurante_escolhido)
 
 @app.route("/ingrediente", methods=['POST'])
 def ingrediente():
@@ -40,13 +37,6 @@ def ingrediente():
 
     return render_template('ingrediente.html', refeicao_escolhida=refeicao_escolhida,bebida_escolhida=bebida_escolhida)
 
-
-@app.route("/pedido", methods=['POST'])
-def pedido():
-
-    restaurante_escolhido = request.form['lista_restaurantes']
-
-    return render_template('refeicao.html', restaurante_escolhido=restaurante_escolhido)
 
 @app.route("/dados", methods=['POST'])
 def dados():
