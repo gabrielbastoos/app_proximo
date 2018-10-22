@@ -9,25 +9,25 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <h3>{{restaurante_escolhido}}</h3>
-    <form action="\echo" method="POST">
+    <h2>{{restaurante_escolhido}}</h2>
+    <form action="\ingrediente" method="POST">
 
         <p>Escolha a sua refeição <input list="refeicao" name="refeicao"></p>
 
         <datalist id="refeicao">
-              <!--  <option value = {{ refeicao[0] }}>
-                <option value = {{ refeicao[1] }}>
-                <option value = {{ refeicao[2] }}> -->
                 <option value = "Filé de frango">
                 <option value = "Lasanha">
                 <option value = "Macarrão com Almôndegas">    
-            </datalist>
-        
-        <p>Desejar retirar algum ingrediente da sua refeição ?<input type="checkbox" name="completo" id="completo"> </p>
+        </datalist>
            
-        <p>Deseja comprar bebida? <input type="checkbox" id="bebida" name="bebida">  </p>
+        <p>Bebida <input list="bebida" name="bebida"></p>
 
-        <input value="Acessar" type="submit">
+        <datalist id="bebida">
+                <option value = "Coca-Cola">
+                <option value = "H20 Limoneto">
+                <option value = "Suco de Laranja">    
+        </datalist>
+        <input value="Comprar" type="submit">
 
 
     </form>

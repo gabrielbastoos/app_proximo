@@ -43,10 +43,10 @@ def pedido():
 
     return render_template('refeicao.html', restaurante_escolhido=restaurante_escolhido)
 
-@app.route("/echo2", methods=['POST'])
+'''@app.route("/echo2", methods=['POST'])
 def echo2():
 
-    ''' # Aqui sao os dados do formulario
+    # Aqui sao os dados do formulario
     texto = request.form['name']
     senha = request.form['pass']
     nota = request.form['grade']
@@ -57,9 +57,9 @@ def echo2():
     arq = open('lista.txt', 'w')
     arq.write(registro)
     arq.close()
-    '''
+    
     return render_template('cadastrado.html')
-
+'''
 if __name__ == "__main__":
 
     app.run(host="0.0.0.0", debug=True)
