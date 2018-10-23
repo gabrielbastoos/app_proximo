@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import classes
 
 from flask import Flask, request, render_template
@@ -54,7 +52,7 @@ def dados():
 
     feijao = request.form.get('feijao')
     if feijao:
-        feijao = "feijão -"
+        feijao = "feijao -"
     else:
         feijao = ""
 

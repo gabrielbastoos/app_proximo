@@ -9,8 +9,11 @@
      </head>
 
     <body>
-        <h1>{{ refeicao_escolhida }} com {{ bebida_escolhida }}</h1>
-        <h2><p> Sem {{ arroz }} {{ feijao }} {{ tomate }} {{ alface }} {{ batatafrita }} {{ ovofrito }} {{ farofa }} {{ cenoura }}</p></h2>
+        {{ refeicao_escolhida }}
+
+        {{ bebida_escolhida }}
+
+        <h2><p> Com {{ arroz }} {{ feijao }} {{ tomate }} {{ alface }} {{ batatafrita }} {{ ovofrito }} {{ farofa }} {{ cenoura }}</p></h2>
             <form action="/fim" method="POST">
                 <p>Nome:  <input name="nome"></p>
                 <p>CPF:  <input name="cpf"></p>
