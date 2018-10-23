@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import classes
 
 from flask import Flask, request, render_template
@@ -40,55 +42,59 @@ def ingrediente():
 
 @app.route("/dados", methods=['POST'])
 def dados():
-        arroz = request.form.get('arroz')
-        if arroz:
-            arroz = "arroz -"
-        else:
-            arroz = ""
+    
+    refeicao_escolhida = request.form['refeicao_escolhida']
+    bebida_escolhida = request.form['bebida_escolhida']
 
-        feijao = request.form.get('feijao')
-        if feijao:
-            feijao = "feijão -"
-        else:
-            feijao = ""
+    arroz = request.form.get('arroz')
+    if arroz:
+        arroz = "arroz -"
+    else:
+        arroz = ""
 
-        tomate = request.form.get('tomate')
-        if tomate:
-            tomate = "tomate -"
-        else:
-            tomate = ""
+    feijao = request.form.get('feijao')
+    if feijao:
+        feijao = "feijão -"
+    else:
+        feijao = ""
 
-        alface = request.form.get('alface')
-        if alface:
-            alface = "alface -"
-        else:
-            alface = ""
+    tomate = request.form.get('tomate')
+    if tomate:
+        tomate = "tomate -"
+    else:
+        tomate = ""
 
-        batatafrita = request.form.get('batatafrita')
-        if batatafrita:
-            batatafrita = "batata frita -"
-        else:
-            batatafrita = ""
+    alface = request.form.get('alface')
+    if alface:
+        alface = "alface -"
+    else:
+        alface = ""
 
-        ovofrito = request.form.get('ovofrito')
-        if ovofrito:
-            ovofrito = "ovo frito -"
-        else:
-            ovofrito = ""
+    batatafrita = request.form.get('batatafrita')
+    if batatafrita:
+        batatafrita = "batata frita -"
+    else:
+        batatafrita = ""
 
-        farofa = request.form.get('farofa')
-        if farofa:
-            farofa = "farofa -"
-        else:
-            farofa = ""
+    ovofrito = request.form.get('ovofrito')
+    if ovofrito:
+        ovofrito = "ovo frito -"
+    else:
+        ovofrito = ""
 
-        cenoura = request.form.get('cenoura')
-        if cenoura:
-            cenoura = "cenoura -"
-        else:
-            cenoura = ""
+    farofa = request.form.get('farofa')
+    if farofa:
+        farofa = "farofa -"
+    else:
+        farofa = ""
 
-        return render_template('dados.html', arroz=arroz, feijao=feijao, tomate=tomate, alface=alface, batatafrita=batatafrita,cenoura=cenoura,ovofrito=ovofrito,farofa=farofa)
+    cenoura = request.form.get('cenoura')
+    if cenoura:
+        cenoura = "cenoura -"
+    else:
+        cenoura = ""
+
+    return render_template('dados.html', refeicao_escolhida=refeicao_escolhida, bebida_escolhida=bebida_escolhida, arroz=arroz, feijao=feijao, tomate=tomate, alface=alface, batatafrita=batatafrita,cenoura=cenoura,ovofrito=ovofrito,farofa=farofa)
 
 @app.route("/fim", methods=['POST'])
 def fim():

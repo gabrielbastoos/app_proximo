@@ -6,7 +6,13 @@
     <title>Completo?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <script src="main.js">
+
+        document.getElementById('refeicao_escolhida').value = {{ refeicao_escolhida }};
+        document.getElementById('bebida_escolhida').value = {{ bebida_escolhida }};
+
+
+    </script>
 </head>
 <body>
 
@@ -25,7 +31,11 @@
         <p>Farofa<input type="checkbox" name="Farofa"></p>
         <p>Cenoura<input type="checkbox" name="Cenoura"></p>
 
-        
+        <input type="hidden" id ="refeicao_escolhida" name = "refeicao_escolhida" value="">
+    
+        <input type="hidden" id ="bebida_escolhida" name = "bebida_escolhida" value="">
+
+
         <input type="submit" value="Enviar pedido">
 
     </form>
