@@ -11,23 +11,24 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-verdinho = classes.Restaurante("Verdinho")
+#verdinho = classes.Restaurante("Verdinho")
 #verdinho.incluir_prato()
 #verdinho.incluir_bedida()
 
-spobreto = classes.Restaurante("Spobreto")
+#spobreto = classes.Restaurante("Spobreto")
 #spobreto.incluir_prato()
 #spobreto.incluir_bebida()
 
-burguesao = classes.Restaurante("Burguesao")
+#burguesao = classes.Restaurante("Burguesao")
 #burguesao.incluir_prato()
 #burguesao.incluir_bebida()
 
 
-@app.route("/")
+@app.route('/')
+@app.route('/restaurantes/')
 def hello():
-    lista_restaurantes = [verdinho.nome,spobreto.nome,burguesao.nome]
-    return render_template('restaurante.html', lista_restaurantes=lista_restaurantes)
+	restaurantes = session.query(Restaurante).all()
+	return render_template('restaurante.html', restaurantes=restaurantes)
 
 
 @app.route("/pedido", methods=['POST'])
