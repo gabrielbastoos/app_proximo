@@ -9,12 +9,20 @@
 </head>
 <script type="text/javascript">
 
-    function passarValores(){
+    function passarValores(bebida,refeicao){ 
+
+    if (document.getElementById("bebida_escolhida") != null) {
     
-        document.getElementById("refeicao_escolhida").setAttribute('value','My default value');
-        document.getElementById("bebida_escolhida").value  = "'",{{ bebida_escolhida }}, "'";
-        //document.getElementById("bebida_escolhida").value = {{ bebida_escolhida }};
+        document.getElementById("bebida_escolhida").value  = bebida ;
+        console.log(bebida);
+        document.getElementById("refeicao_escolhida").value  = refeicao ;
     }
+    
+    // document.getElementById("refeicao_escolhida").setAttribute('value','My default value');
+        
+    //document.getElementById("bebida_escolhida").value = {{ bebida_escolhida }};
+    
+}
 </script>
 <body>
 
@@ -36,10 +44,12 @@
         <input type="hidden" id="refeicao_escolhida" name="refeicao_escolhida" value=""/>
 
         <input type="hidden" id="bebida_escolhida" name="bebida_escolhida" value=""/>
-        
-        <script>
-                passarValores();
-        </script>
+    
+    <script>
+        var bebida_escolhida = '{{ bebida_escolhida }}' ;
+        var refeicao_escolhida = '{{ refeicao_escolhida }}';
+        passarValores( bebida_escolhida, refeicao_escolhida );
+    </script>
 
         <input type="submit" value="Enviar pedido">
 
