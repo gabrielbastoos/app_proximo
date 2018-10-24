@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from classes import Base, Restaurante, Bebida, Refeicao, Cliente
+from classes import Base, Restaurante, Refeicao, Cliente
 
 engine = create_engine('host do database aqui')
 Base.metadata.bind = engine
