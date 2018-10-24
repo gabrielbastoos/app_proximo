@@ -1,14 +1,15 @@
-import classes
 
-from flask import Flask, request, render_template
-from flask.ext.mysqldb import MySQL
-
+from flask import Flask, request, redirect, url_for, flash, render_template, jsonify
 app = Flask(__name__)
-app.config['MYSQL_HOST']= 'endereco do host aqui'
-app.config['MYSQL_USER']= 'seu username'
-app.config['MYSQL_PASSWORD']= 'senha'
-app.config['MYSQL_DB']= 'nome do database'
-mysql = MySQL(app)
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from classes import Base, Restaurante, Bebida, Refeicao, Cliente
+
+engine = create_engine('host do database aqui')
+Base.metadata.bind = engine
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 verdinho = classes.Restaurante("Verdinho")
 #verdinho.incluir_prato()
