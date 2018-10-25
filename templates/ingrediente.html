@@ -9,22 +9,17 @@
 </head>
 <script type="text/javascript">
 
-    function passarValores(bebida,refeicao){ 
-
-    if (document.getElementById("bebida_escolhida") != null) {
+    function passarValores(bebida,refeicao,restaurante){ 
     
         document.getElementById("bebida_escolhida").value  = bebida ;
-        console.log(bebida);
         document.getElementById("refeicao_escolhida").value  = refeicao ;
-    }
-    
-    // document.getElementById("refeicao_escolhida").setAttribute('value','My default value');
-        
-    //document.getElementById("bebida_escolhida").value = {{ bebida_escolhida }};
+        document.getElementById("restaurante_escolhido").value  = restaurante ;
     
 }
 </script>
 <body>
+
+    <h1>{{ restaurante_escolhido }}</h1>
 
     <h2><p> {{ refeicao_escolhida }} com {{ bebida_escolhida }}</p></h2>
 
@@ -44,11 +39,14 @@
         <input type="hidden" id="refeicao_escolhida" name="refeicao_escolhida" value=""/>
 
         <input type="hidden" id="bebida_escolhida" name="bebida_escolhida" value=""/>
+        
+        <input type="hidden" id="restaurante_escolhido" name="restaurante_escolhido" value=""/>
     
     <script>
         var bebida_escolhida = '{{ bebida_escolhida }}' ;
         var refeicao_escolhida = '{{ refeicao_escolhida }}';
-        passarValores( bebida_escolhida, refeicao_escolhida );
+        var restaurante_escolhido = '{{ restaurante_escolhido }}'
+        passarValores( bebida_escolhida, refeicao_escolhida, restaurante_escolhido );
     </script>
 
         <input type="submit" value="Enviar pedido">

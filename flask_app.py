@@ -25,17 +25,18 @@ def hello():
 @app.route("/pedido", methods=['POST'])
 def pedido():
 
-    restaurante_escolhido = request.form['lista_restaurantes']
+    restaurante_escolhido = request.form['restaurante_escolhido']
 
     return render_template('refeicao.html', restaurante_escolhido=restaurante_escolhido)
 
 @app.route("/ingrediente", methods=['POST'])
 def ingrediente():
 
+    restaurante_escolhido = request.form['restaurante_escolhido']
     refeicao_escolhida = request.form['refeicao']
     bebida_escolhida = request.form['bebida']
 
-    return render_template('ingrediente.html', refeicao_escolhida=refeicao_escolhida,bebida_escolhida=bebida_escolhida)
+    return render_template('ingrediente.html', refeicao_escolhida=refeicao_escolhida,bebida_escolhida=bebida_escolhida,restaurante_escolhido=restaurante_escolhido)
 
 
 @app.route("/dados", methods=['POST'])
@@ -43,6 +44,7 @@ def dados():
     
     refeicao_escolhida = request.form['refeicao_escolhida']
     bebida_escolhida = request.form['bebida_escolhida']
+    restaurante_escolhido = request.form['restaurante_escolhido']
 
     arroz = request.form.get('arroz')
     if arroz:
@@ -92,11 +94,19 @@ def dados():
     else:
         cenoura = ""
 
-    return render_template('dados.html', refeicao_escolhida=refeicao_escolhida, bebida_escolhida=bebida_escolhida, arroz=arroz, feijao=feijao, tomate=tomate, alface=alface, batatafrita=batatafrita,cenoura=cenoura,ovofrito=ovofrito,farofa=farofa)
+    return render_template('dados.html', restaurante_escolhido=restaurante_escolhido, refeicao_escolhida=refeicao_escolhida, bebida_escolhida=bebida_escolhida, arroz=arroz, feijao=feijao, tomate=tomate, alface=alface, batatafrita=batatafrita,cenoura=cenoura,ovofrito=ovofrito,farofa=farofa)
 
 @app.route("/fim", methods=['POST'])
 def fim():
-    return render_template('fim.html')
+
+    restaurante_escolhido = request.form['restaurante_escolhido']
+    refeicao_escolhida = request.form['refeicao_escolhida']
+    bebida_escolhida = request.form['bebida_escolhida']
+    nome = request.form['nome']
+    cpf = request.form['cpf']
+    forma_pagamento = request.form['forma_pagamento']
+
+    return render_template('fim.html',restaurante_escolhido=restaurante_escolhido,refeicao_escolhida=refeicao_escolhida,bebida_escolhida=bebida_escolhida,nome=nome,cpf=cpf,forma_pagamento=forma_pagamento)
 
 if __name__ == "__main__":
 

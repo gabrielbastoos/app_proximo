@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html>
-     <head>
+    <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
         <script src="main.js"></script>
-     </head>
+    </head>
+    <script type="text/javascript">
 
+        function passarValores(bebida,refeicao,restaurante){ 
+        
+            document.getElementById("bebida_escolhida").value  = bebida ;
+            document.getElementById("refeicao_escolhida").value  = refeicao ;
+            document.getElementById("restaurante_escolhido").value  = restaurante ;
+        
+    }
+    </script>
     <body>
-        {{ refeicao_escolhida }}
-
-        {{ bebida_escolhida }}
+    
+        <h1>{{ restaurante_escolhido }}</h1>
+        <h1>{{ refeicao_escolhida }} com {{ bebida_escolhida }}</h1>
 
         <h2><p> Com {{ arroz }} {{ feijao }} {{ tomate }} {{ alface }} {{ batatafrita }} {{ ovofrito }} {{ farofa }} {{ cenoura }}</p></h2>
             <form action="/fim" method="POST">
                 <p>Nome:  <input name="nome"></p>
                 <p>CPF:  <input name="cpf"></p>
-                <p>Forma de Pagamento: <input list=formas_pagamento name = "formas_pagamento"></p>
+                <p>Forma de Pagamento: <input list=formas_pagamento name = "forma_pagamento"></p>
                 <datalist id="formas_pagamento">
                 <option value = "Dinheiro">
                 <option value = "Cartão de Crédito">
                 <option value = "Cartão de Débito">
                 </datalist>
+                
+                <input type="hidden" id="refeicao_escolhida" name="refeicao_escolhida" value=""/>
+
+                <input type="hidden" id="bebida_escolhida" name="bebida_escolhida" value=""/>
+
+                <input type="hidden" id="restaurante_escolhido" name="restaurante_escolhido" value=""/>
+
+                <script>
+                    var bebida_escolhida = '{{ bebida_escolhida }}' ;
+                    var refeicao_escolhida = '{{ refeicao_escolhida }}';
+                    var restaurante_escolhido = '{{ restaurante_escolhido }}'
+                    passarValores( bebida_escolhida, refeicao_escolhida, restaurante_escolhido );
+                </script>
 
                 <input value="Comprar refeição" type="submit">
             </form>

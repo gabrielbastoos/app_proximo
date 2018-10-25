@@ -6,7 +6,16 @@
     <title>Escolha sua refeição</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <script type="text/javascript">
+
+        function passarValores(restaurante){ 
+    
+        if (document.getElementById("restaurante_escolhido") != null) {
+        
+            document.getElementById("restaurante_escolhido").value  = restaurante ;
+        }
+    }
+    </script>
 </head>
 <body>
     <h2>{{restaurante_escolhido}}</h2>
@@ -27,6 +36,15 @@
                 <option value = "H20 Limoneto">
                 <option value = "Suco de Laranja">    
         </datalist>
+
+        <input type="hidden" id="restaurante_escolhido" name="restaurante_escolhido" value=""/>
+
+        <script>
+            var restaurante_escolhido = '{{ restaurante_escolhido }}' ;
+            passarValores( restaurante_escolhido );
+        </script>
+
+
         <input value="Comprar" type="submit">
 
 
