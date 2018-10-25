@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 from sqlalchemy import create_engine, Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -7,24 +6,30 @@ from sqlalchemy.orm import relationship
 Base = declarative_base()
 
 class Cliente(Base):
-    
-#    def __init__(self,nome,cpf,refeicao,pagamento):
-#        self.nome = nome
-#        self.cpf = cpf
-#        self.pagamento = pagamento
-#        self.refeicao = refeicao
-
 	__tablename__ = 'cliente'
 
+	id = Column(Integer, primary_key=True)
 	nome = Column(String(250), nullable=False)
-	cpf = Column(String(250))
-	pagamento = Column(String(25), nullable=False)
+	cpf = Column(Integer, nullable=False)
+	pagamento = Column(String(250), nullable=False)
 	@property
 	def serialize(self):
 		return {
+		'id': self.id,
 		'nome': self.nome,
 		'cpf': self.cpf,
 		'pagamento': self.pagamento
+		}
+
+class Restaurante(Base):
+	__tablename__ = 'restaurante'
+	id = Column(Integer, primary_key=True)
+	nome = Column(String(250), nullable=False)
+	@property
+	def serialize(self):
+		return {
+		'id': self.id,
+		'nome': self.nome
 		}
 
 class Refeicao(Base):
@@ -47,38 +52,8 @@ class Refeicao(Base):
 		'restaurante_id': self.restaurante_id
 		}
 
-class Restaurante(Base):
-	__tablename__ = 'restaurante'
-	id = Column(Integer, primary_key=True)
-	nome = Column(String(250), nullable=False)
-	@property
-	def serialize(self):
-		return {
-		'id': self.id,
-		'nome': self.nome
-		}
 
-#    def incluir_prato(self):
-#       quant_pratos = input("Quantos pratos serão incluídos?")
-#        for a in range(0, quant_pratos):
-#            nome = input("Qual nome do prato ?")
-#            quant_ingredientes = input("Qual a quantidade de ingredientes?")
-#            for b in range(0,quant_ingredientes):
-#                ingredientes[b] = input("Ingrediente %i: " %b)
-#            print(ingredientes)
-#            prato[a] = Refeicao(nome,ingredientes)    
-#            #Arquivar objeto !!!!!!!
 
-#        print(" Pratos incluídos com sucesso\nTotal de %i pratos" %quant_pratos)
-        
-#        return prato
-    
-#    def incluir_bebida(self):
-#        quant_bebidas = input("Quantas bebidas serão incluídas?")
-#        for a in range(0, quant_bebidas):
-#            nome = input("Qual nome da bebida %i?" %a)
-#            bebida[a] = Bebida(nome)
 
-#        print(" Bebidas incluídas com sucesso\nTotal de %i bebidas" %quant_bebidas)
-
-#        return bebida   
+engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
+Base.metadata.create_all(engine)
