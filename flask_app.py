@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from classes import Base, Restaurante, Refeicao, Cliente
+from classes import Base, Restaurante, Refeicao, Cliente, Bebida
 
 engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
 Base.metadata.bind = engine
@@ -43,13 +43,21 @@ def mostrarRefeicao(restaurante_id):
 	return render_template('refeicao.html', restaurante=restaurante, refeicao=refeicao)
 
 
-@app.route('/restaurantes/<int:restaurante_id>/<string:refeicao>')
-@app.route('/restaurantes/<int:restaurante_id>/menu/<string:refeicao>')
-def mostrarBebida(restaurante_id):
+@app.route('/restaurantes/<int:restaurante_id>/<string:refeicao>/')
+@app.route('/restaurantes/<int:restaurante_id>/menu/<string:refeicao>/menu')
+def mostrarBebida(restaurante_id,refeicao):
     
     restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
     bebida = session.query(Bebida).filter_by(restaurante_id=restaurante.id)
-    return render_template('bebida.html', restaurante=restaurante, bebida=bebida)
+    return render_template('bebida.html', restaurante=restaurante, bebida=bebida,refeicao=refeicao)
+
+@app.route("/dados")
+def dados():
+    
+    refeicao_escolhida = request.form['refeicao_escolhida']
+    bebida_escolhida = request.form['bebida_escolhida']
+
+    return render_template('dados.html', refeicao_escolhida=refeicao_escolhida, bebida_escolhida=bebida_escolhida)
 
 '''@app.route("/pedido", methods=['POST'])
 def pedido():
@@ -65,63 +73,6 @@ def ingrediente():
     bebida_escolhida = request.form['bebida']
 
     return render_template('ingrediente.html', refeicao_escolhida=refeicao_escolhida,bebida_escolhida=bebida_escolhida)
-
-
-@app.route("/dados", methods=['POST'])
-def dados():
-    
-    refeicao_escolhida = request.form['refeicao_escolhida']
-    bebida_escolhida = request.form['bebida_escolhida']
-
-    arroz = request.form.get('arroz')
-    if arroz:
-        arroz = "arroz -"
-    else:
-        arroz = ""
-
-    feijao = request.form.get('feijao')
-    if feijao:
-        feijao = "feijao -"
-    else:
-        feijao = ""
-
-    tomate = request.form.get('tomate')
-    if tomate:
-        tomate = "tomate -"
-    else:
-        tomate = ""
-
-    alface = request.form.get('alface')
-    if alface:
-        alface = "alface -"
-    else:
-        alface = ""
-
-    batatafrita = request.form.get('batatafrita')
-    if batatafrita:
-        batatafrita = "batata frita -"
-    else:
-        batatafrita = ""
-
-    ovofrito = request.form.get('ovofrito')
-    if ovofrito:
-        ovofrito = "ovo frito -"
-    else:
-        ovofrito = ""
-
-    farofa = request.form.get('farofa')
-    if farofa:
-        farofa = "farofa -"
-    else:
-        farofa = ""
-
-    cenoura = request.form.get('cenoura')
-    if cenoura:
-        cenoura = "cenoura -"
-    else:
-        cenoura = ""
-
-    return render_template('dados.html', refeicao_escolhida=refeicao_escolhida, bebida_escolhida=bebida_escolhida, arroz=arroz, feijao=feijao, tomate=tomate, alface=alface, batatafrita=batatafrita,cenoura=cenoura,ovofrito=ovofrito,farofa=farofa)
 
 @app.route("/fim", methods=['POST'])
 def fim():
