@@ -34,35 +34,13 @@
               <h5 class="w3-padding-32">
               		<div class="Pratos">
         			<ul class="list">
-        			    {%for item in menu_restaurante%}
-				            {%if item.categoria == 'Refeicao'%}
+        			    {%for item in refeicao%}
 					        <li><span id="nome">{{item.nome}}</span> <span id="preco">{{item.preco}}</span></li>
-					        <a href="{{url_for('pedido', restaurante_id=restaurante.id)}}">Comprar</a>
-				            {%endif%}
+					        <a href="{{url_for('mostrarBebida', restaurante_id=restaurante.id, refeicao=item.nome)}}">Comprar</a>
 			            {%endfor%}
-
         			</ul>
-        	</div>
+        	        </div>
+            </div>
         </div>
-    </div>
-
-    <!-- Bebidas -->
-    <div class="w3-row-padding w3-padding-64 w3-container">
-        <div class="w3-content">
-            <div class="w3-twothird">
-              <h1>bebidas</h1>
-              <h5 class="w3-padding-32">
-              		<div class="Bebidas">
-        			<ul class="list">
-        			    {%for item in menu_restaurante%}
-				            {%if item.categoria == 'Bebida'%}
-					        <li><span id="nome">{{item.nome}}</span> <span id="preco">{{item.preco}}</span></li>
-					        <a href="{{url_for('pedido', restaurante_id=restaurante.id)}}">Comprar</a>
-				            {%endif%}
-			            {%endfor%}
-
-        			</ul>
-        	</div>
-        </div>
-
-	</div>
+    </div>    
+</body>

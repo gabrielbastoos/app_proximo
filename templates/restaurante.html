@@ -37,7 +37,7 @@
         			<ul class="list">
         				{%for restaurante in restaurantes%}
         					<li><span>{{restaurante.nome}}</span>
-        					<a href="{{url_for('mostrarRestaurante', restaurante_id=restaurante.id)}}">Menu</a>
+        					<a href="{{url_for('mostrarRefeicao', restaurante_id=restaurante.id)}}">Menu</a>
         					</li>
         					<hr>
         				{%endfor%}

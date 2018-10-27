@@ -35,23 +35,23 @@ def hello():
 
 @app.route('/restaurantes/<int:restaurante_id>/')
 @app.route('/restaurantes/<int:restaurante_id>/menu/')
-def mostrarRestaurante(restaurante_id):
+def mostrarRefeicao(restaurante_id):
+
 	restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
-	menu_restaurante = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
-	return render_template('refeicao.html', restaurante=restaurante, menu_restaurante=menu_restaurante)
+	refeicao = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
+
+	return render_template('refeicao.html', restaurante=restaurante, refeicao=refeicao)
 
 
+@app.route('/restaurantes/<int:restaurante_id>/<string:refeicao>')
+@app.route('/restaurantes/<int:restaurante_id>/menu/<string:refeicao>')
+def mostrarBebida(restaurante_id):
+    
+    restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+    bebida = session.query(Bebida).filter_by(restaurante_id=restaurante.id)
+    return render_template('bebida.html', restaurante=restaurante, bebida=bebida)
 
-@app.route('/restaurantes/<int:restaurantes>/')
-@app.route('/restaurantes/<int:restaurantes>/menu/')
-def mostrarBebidas(restaurante_id):
-	restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
-	menu_restaurante = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
-	return render_template('refeicao.html', restaurante=restaurante, menu_restaurante=menu_restaurante)
-
-
-
-@app.route("/pedido", methods=['POST'])
+'''@app.route("/pedido", methods=['POST'])
 def pedido():
 
     restaurante_escolhido = request.form['lista_restaurantes']
@@ -126,7 +126,7 @@ def dados():
 @app.route("/fim", methods=['POST'])
 def fim():
     return render_template('fim.html')
-
+'''
 if __name__ == "__main__":
 
     app.run(host="0.0.0.0", debug=True)
