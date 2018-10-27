@@ -12,13 +12,16 @@ class Cliente(Base):
 	nome = Column(String(250), nullable=False)
 	cpf = Column(Integer, nullable=False)
 	pagamento = Column(String(250), nullable=False)
+	pedido = Column(String(250),nullable=False)
+
 	@property
 	def serialize(self):
 		return {
 		'id': self.id,
 		'nome': self.nome,
 		'cpf': self.cpf,
-		'pagamento': self.pagamento
+		'pagamento': self.pagamento,
+		'pedido': self.pedido
 		}
 
 class Restaurante(Base):
@@ -37,7 +40,6 @@ class Refeicao(Base):
 
 	id = Column(Integer, primary_key=True)
 	nome = Column(String(250), nullable=False)
-	categoria = Column(String(250))
 	preco = Column(String(25), nullable=False)
 	restaurante_id = Column(Integer, ForeignKey('restaurante.id'))
 	restaurante = relationship(Restaurante)
@@ -53,7 +55,32 @@ class Refeicao(Base):
 		}
 
 
+class Bebida(Base):
+	__tablename__ = 'bebida'
+
+	id = Column(Integer, primary_key=True)
+	nome = Column(String(250), nullable=False)
+	preco = Column(String(25), nullable=False)
+	restaurante_id = Column(Integer, ForeignKey('restaurante.id'))
+	restaurante = relationship(Restaurante)
+
+	@property
+	def serialize(self):
+		return {
+		'id': self.id,
+		'nome': self.nome,
+		'preco': self.preco,
+		'restaurante_id': self.restaurante_id
+		}
 
 
-engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
+
+bd_escolhido = raw_input("Qual banco de dados estara sendo acessado ?")
+
+if (bd_escolhido == "gabriel"):
+    engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+
+if (bd_escolhido == "carol"):
+    engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
+
 Base.metadata.create_all(engine)

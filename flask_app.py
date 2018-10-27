@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from classes import Base, Restaurante, Refeicao, Cliente
 
-engine = create_engine('host do database aqui')
+engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -39,6 +39,16 @@ def mostrarRestaurante(restaurante_id):
 	restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
 	menu_restaurante = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
 	return render_template('refeicao.html', restaurante=restaurante, menu_restaurante=menu_restaurante)
+
+
+
+@app.route('/restaurantes/<int:restaurantes>/')
+@app.route('/restaurantes/<int:restaurantes>/menu/')
+def mostrarBebidas(restaurante_id):
+	restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+	menu_restaurante = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
+	return render_template('refeicao.html', restaurante=restaurante, menu_restaurante=menu_restaurante)
+
 
 
 @app.route("/pedido", methods=['POST'])
