@@ -108,7 +108,7 @@ refeicao1 = Refeicao(nome="Frango a Milanesa com Fritas", preco="R$13.25", resta
 session.add(refeicao1)
 session.commit()
 
-refeicao2 = Refeicao(nome="Suco de Laranja", preco="R$7.00", restaurante=restaurante3)
+refeicao2 = Refeicao(nome="Nhoque a Bolonhesa", preco="R$18.00", restaurante=restaurante3)
 
 session.add(refeicao2)
 session.commit()

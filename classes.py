@@ -50,7 +50,6 @@ class Refeicao(Base):
 		'id': self.id,
 		'nome': self.nome,
 		'preco': self.preco,
-		'categoria': self.categoria,
 		'restaurante_id': self.restaurante_id
 		}
 
