@@ -24,11 +24,21 @@ session = DBSession()
 #burguesao.incluir_bebida()
 
 
-@app.route('/')
+
+@app.route("/")
+@app.route('/#')
 @app.route('/restaurantes/')
 def hello():
-	restaurantes = session.query(Restaurante).all()					#lista os restaurantes
+	restaurantes = session.query(Restaurante).all()
 	return render_template('restaurante.html', restaurantes=restaurantes)
+
+
+@app.route('/restaurantes/<int:restaurante_id>/')
+@app.route('/restaurantes/<int:restaurante_id>/menu/')
+def mostrarRestaurante(restaurante_id):
+	restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+	menu_restaurante = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
+	return render_template('refeicao.html', restaurante=restaurante, menu_restaurante=menu_restaurante)
 
 
 @app.route("/pedido", methods=['POST'])
