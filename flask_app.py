@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from classes import Base, Restaurante, Refeicao, Cliente, Bebida
+from classes import Base, Restaurante, Refeicao, Cliente, Bebida, Usuario
 
 engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
 #engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
@@ -97,6 +97,42 @@ def pedido():
     session.commit()
 
     return render_template('fim.html',preco=preco)
+
+@app.route("/login")
+def pagina_login():
+    return render_template('login.html')
+
+
+@app.route("/admin_page" , methods=['POST'])
+def pagina_admin():
+
+    username = request.form['username']
+    password = request.form['password']
+    
+    username_db = session.query(Usuario).filter_by(name=username).one()
+
+    if(username_db):
+        return render_template('login.html')
+
+    if (username_db.password == password):
+        return render_template('admin.html')
+    else:
+        return render_template('login.html')
+
+@app.route("/admin_page/cadastrarRestaurante")
+def cadastrarRestaurante():
+
+    return render_template('addRestaurante.html')
+
+@app.route("/admin_page/cadastrarRefeicao")
+def cadastrarRefeicao():
+
+    return render_template('addRefeicao.html')
+
+@app.route("/admin_page/cadastrarBebida")
+def cadastrarBebida():
+
+    return render_template('addBebida.html')
 
 if __name__ == "__main__":
 
