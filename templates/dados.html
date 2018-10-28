@@ -29,20 +29,25 @@
 
          <body>
                 <h1 style="text-align: center">{{ refeicao_escolhida.nome }} e {{ bebida_escolhida.nome }}</h1>
-                    <form class="w3-row-padding w3-padding-64 w3-container" style="text-align: center" action="/fim" method="POST">
+                    <form class="w3-row-padding w3-padding-64 w3-container" style="text-align: center" action="/pedido" method="POST">
                         <p>Nome:  <input name="nome"></p>
                         <p>CPF:  <input name="cpf"></p>
-                        <p>Forma de Pagamento: <input list=formas_pagamento name = "formas_pagamento"></p>
+                        <p>Forma de Pagamento: <input list=formas_pagamento name = "pagamento"></p>
                         <datalist id="formas_pagamento">
                         <option value = "Dinheiro">
                         <option value = "Cartão de Crédito">
                         <option value = "Cartão de Débito">
                         </datalist>
-                        
-                        <input value="Comprar refeição" type="submit">
+
+                        <input type="hidden" name="refeicao_escolhida" value= '{{ refeicao_escolhida.id }}'>
+                        <input type="hidden" name="bebida_escolhida" value= '{{ bebida_escolhida.id }}'>
+                        <input type="hidden" name="restaurante" value= '{{ restaurante.id }}'>
+
+                        <input type="submit" value="Enviar pedido">
                     </form>
+
+
             </body>
 
-            <a href="{{url_for('pedido', restaurante_id=restaurante.id, bebida_id=bebida_escolhida.id, refeicao_id=refeicao_escolhida.id )}}">Efetuar pedido</a>
 
 </body>

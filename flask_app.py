@@ -65,13 +65,24 @@ def dados(restaurante_id,refeicao_id,bebida_id):
 
     return render_template('dados.html', restaurante=restaurante, refeicao_escolhida=refeicao, bebida_escolhida=bebida)
 
-'''@app.route("/pedido", methods=['POST'])
+@app.route("/pedido", methods=['POST'])
 def pedido():
 
-    restaurante_escolhido = request.form['lista_restaurantes']
+    restaurante_id = request.form['restaurante']
+    refeicao_escolhida_id = request.form['refeicao_escolhida']
+    bebida_escolhida_id = request.form['bebida_escolhida']
+    nome = request.form['nome']
+    cpf = request.form['cpf']
+    pagamento = request.form['pagamento'] 
 
-    return render_template('refeicao.html', restaurante_escolhido=restaurante_escolhido)
+    restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+    refeicao = session.query(Refeicao).filter_by(id=refeicao_escolhida_id).one()
+    bebida = session.query(Bebida).filter_by(id=bebida_escolhida_id).one()
 
+    pedido = "Refeicao: "+refeicao.nome+"\t Bebida: "+bebida.nome
+
+    return render_template('fim.html', pedido=pedido)
+'''
 @app.route("/fim", methods=['POST'])
 def fim():
     return render_template('fim.html')
