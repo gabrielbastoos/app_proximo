@@ -81,12 +81,12 @@ def pedido():
 
     pedido = "Refeicao: "+refeicao.nome+"\t Bebida: "+bebida.nome
 
-    return render_template('fim.html', pedido=pedido)
-'''
-@app.route("/fim", methods=['POST'])
-def fim():
+    cliente = Cliente(nome=nome, cpf=cpf, pagamento=pagamento, pedido=pedido)
+    session.add(cliente)
+    session.commit()
+
     return render_template('fim.html')
-'''
+
 if __name__ == "__main__":
 
     app.run(host="0.0.0.0", debug=True)
