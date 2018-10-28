@@ -109,7 +109,7 @@ def pagina_admin():
     username = request.form['username']
     password = request.form['password']
     
-    username_db = session.query(Usuario).filter_by(name=username).one()
+    username_db = session.query(Usuario).filter_by(name=username).first()
 
     if(username_db):
         return render_template('login.html')
