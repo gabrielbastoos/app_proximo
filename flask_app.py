@@ -6,8 +6,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from classes import Base, Restaurante, Refeicao, Cliente, Bebida
 
-#engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
-engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
+engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+#engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 #engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
 
@@ -79,6 +79,10 @@ def pedido():
     nome = request.form['nome']
     cpf = request.form['cpf']
     pagamento = request.form['pagamento']
+    obs = request.form['obs']
+
+    if(obs == "Deseja retirar algo?"):
+        obs = ""
 
     restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
     refeicao = session.query(Refeicao).filter_by(id=refeicao_escolhida_id).one()
@@ -86,13 +90,15 @@ def pedido():
 
     pedido = "Refeicao: "+refeicao.nome+"\t Bebida: "+bebida.nome
 
-    cliente = Cliente(nome=nome, cpf=cpf, pagamento=pagamento, pedido=pedido)
+    preco = (float(refeicao.preco.replace("R$","")) + float(bebida.preco.replace("R$","")))
+
+    cliente = Cliente(nome=nome, cpf=cpf, pagamento=pagamento, obs=obs, preco_pedido = preco, pedido=pedido, restaurante_id=restaurante.id)
     session.add(cliente)
     session.commit()
 
-    return render_template('fim.html')
+    return render_template('fim.html',preco=preco)
 
-#if __name__ == "__main__":
+if __name__ == "__main__":
 
-#    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=True)
 
