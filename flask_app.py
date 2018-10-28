@@ -37,6 +37,17 @@ def hello():
 	restaurantes = session.query(Restaurante).all()
 	return render_template('restaurante.html', restaurantes=restaurantes)
 
+@app.route("/listar_pedidos")
+def selecionar_restaurante():
+    restaurantes = session.query(Restaurante).all()
+    return render_template('selecionarRestaurante.html', restaurantes=restaurantes) 
+    
+@app.route("/lista_pedido/<int:restaurante_id>/")
+def visualizar_pedidos(restaurante_id):
+    
+    restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+        
+    return render_template('lista_pedido.html')
 
 @app.route('/restaurantes/<int:restaurante_id>/')
 @app.route('/restaurantes/<int:restaurante_id>/menu/')
