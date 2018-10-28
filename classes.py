@@ -30,6 +30,7 @@ class Cliente(Base):
 	obs = Column(String(250))
 	pedido = Column(String(250),nullable=False)
 	preco_pedido = Column(Integer,nullable=False)
+	horario_pedido = Column(String(250), nullable=False)
 	restaurante_id = Column(Integer, ForeignKey('restaurante.id'))
 
 	@property
@@ -42,6 +43,7 @@ class Cliente(Base):
 		'obs' :self.obs,
 		'pedido': self.pedido,
 		'preco_pedido': self.preco_pedido,
+		'horario_pedido':self.horario_pedido,
 		'restaurante_id': self.restaurante_id
 		}
 
@@ -94,8 +96,8 @@ class Bebida(Base):
 		}
 
 
-engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
-#engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
+#engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 #engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
 
