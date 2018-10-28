@@ -74,12 +74,16 @@ class Bebida(Base):
 
 
 
-bd_escolhido = raw_input("Qual banco de dados estara sendo acessado ?")
-
-if (bd_escolhido == "gabriel"):
+if (bd_escolhido == "gabriel-local"):
     engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+
+if (bd_escolhido == "gabriel-online"):
+    engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
 
 if (bd_escolhido == "carol"):
     engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
+
+if (bd_escolhido == "arthur"):
+    engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
 
 Base.metadata.create_all(engine)
