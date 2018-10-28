@@ -78,5 +78,4 @@ engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbast
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 #engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
 
-'''
 Base.metadata.create_all(engine)

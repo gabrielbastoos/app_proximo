@@ -14,40 +14,35 @@
     </style>
 
 <body>
-    <!-- Header -->
-    <header class="w3-container w3-red w3-center" style="padding:50px 8px">
-      <h1 class="w3-margin w3-jumbo">Menu do {{restaurante.nome}}</h1>
-    </header>
+        <!-- Header -->
+        <header class="w3-container w3-red w3-center" style="padding:50px 8px">
+        <h1 class="w3-margin w3-jumbo">Menu do {{restaurante.nome}}</h1>
+        </header>
 
-    <!-- Barra superior -->
-        <div class="w3-top">
-          <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="hello()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <a href="http://caroluchoa.pythonanywhere.com/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-          </div>
-         </div>
+        <!-- Barra superior -->
+            <div class="w3-top">
+            <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+                <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="hello()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+                <a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+            </div>
+            </div>
 
-         <body>
-                <h1 style="text-align: center">{{ refeicao_escolhida.nome }} e {{ bebida_escolhida.nome }}</h1>
-                    <form class="w3-row-padding w3-padding-64 w3-container" style="text-align: center" action="/pedido" method="POST">
-                        <p>Nome:  <input name="nome"></p>
-                        <p>CPF:  <input name="cpf"></p>
-                        <p>Forma de Pagamento: <input list=formas_pagamento name = "pagamento"></p>
-                        <datalist id="formas_pagamento">
-                        <option value = "Dinheiro">
-                        <option value = "Cartão de Crédito">
-                        <option value = "Cartão de Débito">
-                        </datalist>
+            <h1 style="text-align: center">{{ refeicao_escolhida.nome }} e {{ bebida_escolhida.nome }}</h1>
+            <form class="w3-row-padding w3-padding-64 w3-container" style="text-align: center" action="/pedido" method="POST">
+                <p>Nome:  <input name="nome"></p>
+                <p>CPF:  <input name="cpf"></p>
+                <p>Forma de Pagamento: <input list=formas_pagamento name = "pagamento"></p>
+                <datalist id="formas_pagamento">
+                    <option value = "Dinheiro">
+                    <option value = "Cartão de Crédito">
+                    <option value = "Cartão de Débito">
+                </datalist>
 
-                        <input type="hidden" name="refeicao_escolhida" value= '{{ refeicao_escolhida.id }}'>
-                        <input type="hidden" name="bebida_escolhida" value= '{{ bebida_escolhida.id }}'>
-                        <input type="hidden" name="restaurante" value= '{{ restaurante.id }}'>
+                <input type="hidden" name="refeicao_escolhida" value= '{{ refeicao_escolhida.id }}'>
+                <input type="hidden" name="bebida_escolhida" value= '{{ bebida_escolhida.id }}'>
+                <input type="hidden" name="restaurante" value= '{{ restaurante.id }}'>
 
-                        <input type="submit" value="Enviar pedido">
-                    </form>
-
-
-            </body>
-
-
-</body>
+                <input type="submit" value="Enviar pedido">
+            </form>
+    </body>
+</html>
