@@ -36,7 +36,7 @@
         			<ul class="list">
         			    {%for item in refeicao%}
 					        <li><span id="nome">{{item.nome}}</span> <span id="preco">{{item.preco}}</span></li>
-					        <a href="{{url_for('mostrarBebida', restaurante_id=restaurante.id, refeicao=item.id)}}">Comprar</a>
+					        <a href="{{url_for('mostrarBebida', restaurante_id=restaurante.id, refeicao_id=item.id)}}">Comprar</a>
 			            {%endfor%}
         			</ul>
         	        </div>

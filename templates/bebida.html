@@ -16,6 +16,7 @@
     <!-- Header -->
     <header class="w3-container w3-red w3-center" style="padding:50px 8px">
       <h1 class="w3-margin w3-jumbo">Menu do {{restaurante.nome}}</h1>
+
     </header>
 
     <!-- Barra superior -->
@@ -25,7 +26,7 @@
             <a href="http://caroluchoa.pythonanywhere.com/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
           </div>
          </div>
-
+         <h3 style="text-align: center"> Refeição Escolhida: {{ refeicao.nome }}</h3>  
     <!-- Bebidas -->
     <div class="w3-row-padding w3-padding-64 w3-container">
         <div class="w3-content">
@@ -36,7 +37,7 @@
         			<ul class="list">
         			    {%for item in bebida%}
 					        <li><span id="nome">{{item.nome}}</span> <span id="preco">{{item.preco}}</span></li>
-					        <a href="{{url_for('pedido', restaurante_id=restaurante.id)}}">Comprar</a>
+					        <a href="{{url_for('dados', restaurante_id=restaurante.id, bebida_id=item.id, refeicao_id=refeicao.id )}}">Comprar</a>
 			            {%endfor%}
 
         			</ul>
