@@ -74,6 +74,8 @@ class Bebida(Base):
 
 
 
+bd_escolhido = raw_input("Qual banco de dados estara sendo acessado ?")
+
 if (bd_escolhido == "gabriel-local"):
     engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
 
