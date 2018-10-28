@@ -111,7 +111,7 @@ def pagina_admin():
     
     username_db = session.query(Usuario).filter_by(name=username).first()
 
-    if(username_db):
+    if(username_db == None):
         return render_template('login.html')
 
     if (username_db.password == password):
