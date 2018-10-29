@@ -1,4 +1,6 @@
 import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from sqlalchemy import create_engine, Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -30,7 +32,8 @@ class Cliente(Base):
 	obs = Column(String(250))
 	pedido = Column(String(250),nullable=False)
 	preco_pedido = Column(Integer,nullable=False)
-	horario_pedido = Column(String(250), nullable=False)
+	data_pedido = Column(String(250), nullable=False)
+	hora_pedido = Column(String(250), nullable=False)
 	restaurante_id = Column(Integer, ForeignKey('restaurante.id'))
 
 	@property
@@ -43,7 +46,8 @@ class Cliente(Base):
 		'obs' :self.obs,
 		'pedido': self.pedido,
 		'preco_pedido': self.preco_pedido,
-		'horario_pedido':self.horario_pedido,
+		'data_pedido':self.data_pedido,
+		'hora_pedido':self.hora_pedido,
 		'restaurante_id': self.restaurante_id
 		}
 

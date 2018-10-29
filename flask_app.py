@@ -1,3 +1,6 @@
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from datetime import datetime
 from flask import Flask, request, redirect, url_for, flash, render_template, jsonify
 app = Flask(__name__)
@@ -45,9 +48,11 @@ def selecionar_restaurante():
 @app.route("/lista_pedido/<int:restaurante_id>/")
 def visualizar_pedidos(restaurante_id):
     
+    timestamp = datetime.now().date()
     restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+    pedidos = session.query(Cliente).filter_by(restaurante_id=restaurante_id).all()
         
-    return render_template('lista_pedido.html')
+    return render_template('lista_pedido.html', restaurante=restaurante, pedidos=pedidos,data_atual=timestamp)
 
 @app.route('/restaurantes/<int:restaurante_id>/')
 @app.route('/restaurantes/<int:restaurante_id>/menu/')
@@ -103,9 +108,10 @@ def pedido():
 
     preco = (float(refeicao.preco.replace("R$","")) + float(bebida.preco.replace("R$","")))
 
-    timestamp = datetime.now()
+    time = datetime.now().time()
+    data = datetime.now().date()
 
-    cliente = Cliente(nome=nome, cpf=cpf, pagamento=pagamento, obs=obs, preco_pedido = preco, pedido=pedido, horario_pedido=timestamp, restaurante_id=restaurante.id)
+    cliente = Cliente(nome=nome, cpf=cpf, pagamento=pagamento, obs=obs, preco_pedido = preco, pedido=pedido, data_pedido=data, hora_pedido=time, restaurante_id=restaurante.id)
     session.add(cliente)
     session.commit()
 

@@ -15,7 +15,7 @@
 
 <!-- Header -->
     <header class="w3-container w3-red w3-center" style="padding:50px 16px">
-      <h1 class="w3-margin w3-jumbo">Selecione o restaurante</h1>
+      <h1 class="w3-margin w3-jumbo">Pedidos</h1><br>
     </header>
 
     <body>
@@ -27,18 +27,21 @@
          </div>
 
 <!-- Corpo -->
-
 <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-content">
       <div class="w3-twothird">
-        <h1>Visualização dos pedidos</h1>
+        <h1>{{ restaurante.nome }}</h1>
         <h5 class="w3-padding-32">
                 <div class="restaurantsList">
               <ul class="list">
-                  {%for restaurante in restaurantes%}
-                      <li><span>{{restaurante.nome}}</span>
-                      <a href="{{url_for('visualizar_pedidos', restaurante_id=restaurante.id)}}">Ver pedidos</a>
+                  {%for cliente in pedidos%}
+                      <li><span>Nome:{{cliente.nome}}</span><br>
+                        <span>{{cliente.pedido}}</span><br>
+                        <span>Obs:{{cliente.obs}}</span><br>
+                        <span>Valor:R$ {{cliente.preco_pedido}} </span><br>
+                        <span>Forma de Pagamento: {{cliente.pagamento}} </span><br>
                       </li>
+
                       <hr>
                   {%endfor%}
               </ul>
