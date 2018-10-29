@@ -194,7 +194,7 @@ def cadastrarRestauranteBD():
     session.add(restaurante)
     session.commit()
     
-    return render_template('cadastro.html',produto=restaurante)
+    return render_template('cadastro.html',produto=restaurante_nome)
 
 
 if __name__ == "__main__":
