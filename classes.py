@@ -95,9 +95,8 @@ class Bebida(Base):
 		'restaurante_id': self.restaurante_id
 		}
 
-
-#engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
-engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
+engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+#engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 #engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
 

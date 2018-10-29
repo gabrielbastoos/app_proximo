@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from flask import Flask, request, redirect, url_for, flash, render_template, jsonify
 app = Flask(__name__)
 
@@ -6,8 +6,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from classes import Base, Restaurante, Refeicao, Cliente, Bebida, Usuario
 
-#engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
-engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
+engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+#engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 #engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
 
@@ -102,13 +102,8 @@ def pedido():
     pedido = "Refeicao: "+refeicao.nome+"   Bebida: "+bebida.nome
 
     preco = (float(refeicao.preco.replace("R$","")) + float(bebida.preco.replace("R$","")))
-    '''
-    session.rollback()
-    timestamp = session.execute("SELECT CURRENT_TIMESTAMP").first()
-    session.commit()
-    '''
-    fuso = timezone(timedelta(hours=-3))
-    timestamp = datetime.datetime.now.astimezone(fuso)
+
+    timestamp = datetime.now()
 
     cliente = Cliente(nome=nome, cpf=cpf, pagamento=pagamento, obs=obs, preco_pedido = preco, pedido=pedido, horario_pedido=timestamp, restaurante_id=restaurante.id)
     session.add(cliente)
@@ -152,6 +147,6 @@ def cadastrarBebida():
 
     return render_template('addBebida.html')
 
-#if __name__ == "__main__":
+if __name__ == "__main__":
 
- #   app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=True)
