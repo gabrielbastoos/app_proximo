@@ -1,6 +1,4 @@
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 from datetime import datetime
 from flask import Flask, request, redirect, url_for, flash, render_template, jsonify
 app = Flask(__name__)
@@ -9,8 +7,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from classes import Base, Restaurante, Refeicao, Cliente, Bebida, Usuario
 
-engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
-#engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
+#engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 #engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
 
@@ -43,15 +41,15 @@ def hello():
 @app.route("/listar_pedidos")
 def selecionar_restaurante():
     restaurantes = session.query(Restaurante).all()
-    return render_template('selecionarRestaurante.html', restaurantes=restaurantes) 
-    
+    return render_template('selecionarRestaurante.html', restaurantes=restaurantes)
+
 @app.route("/lista_pedido/<int:restaurante_id>/")
 def visualizar_pedidos(restaurante_id):
-    
+
     timestamp = datetime.now().date()
     restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
     pedidos = session.query(Cliente).filter_by(restaurante_id=restaurante_id).all()
-        
+
     return render_template('lista_pedido.html', restaurante=restaurante, pedidos=pedidos,data_atual=timestamp)
 
 @app.route('/restaurantes/<int:restaurante_id>/')
@@ -127,7 +125,7 @@ def pagina_admin():
 
     username = request.form['username']
     password = request.form['password']
-    
+
     username_db = session.query(Usuario).filter_by(name=username).first()
 
     if(username_db == None):
@@ -166,7 +164,7 @@ def cadastrarBebidaBD():
     bebida = Bebida(nome=bebida_nome, preco=bebida_preco, restaurante_id=restaurante.id)
     session.add(bebida)
     session.commit()
-    
+
     return render_template('cadastro.html',produto=bebida_nome)
 
 @app.route("/admin_page/refeicao/cadastrar" , methods=['POST'])
@@ -182,7 +180,7 @@ def cadastrarRefeicaoBD():
     refeicao = Refeicao(nome=refeicao_nome, preco=refeicao_preco, restaurante_id=restaurante.id)
     session.add(refeicao)
     session.commit()
-    
+
     return render_template('cadastro.html',produto=refeicao_nome)
 
 @app.route("/admin_page/restaurante/cadastrar" , methods=['POST'])
@@ -193,10 +191,10 @@ def cadastrarRestauranteBD():
     restaurante = Restaurante(nome=restaurante_nome)
     session.add(restaurante)
     session.commit()
-    
+
     return render_template('cadastro.html',produto=restaurante_nome)
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
-    app.run(host="0.0.0.0", debug=True)
+  #  app.run(host="0.0.0.0", debug=True)
