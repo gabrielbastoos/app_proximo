@@ -148,10 +148,54 @@ def cadastrarRefeicao():
 
     return render_template('addRefeicao.html')
 
-@app.route("/admin_page/cadastrarBebida")
+@app.route("/admin_page/bebida")
 def cadastrarBebida():
 
     return render_template('addBebida.html')
+
+@app.route("/admin_page/bebida/cadastrar" , methods=['POST'])
+def cadastrarBebidaBD():
+
+    restaurante_nome = request.form['restaurante_nome']
+    restaurante = session.query(Restaurante).filter_by(nome=restaurante_nome).one()
+
+    bebida_nome = request.form['bebida_nome']
+    bebida_preco = request.form['bebida_preco']
+    bebida_preco = "R$"+bebida_preco
+
+    bebida = Bebida(nome=bebida_nome, preco=bebida_preco, restaurante_id=restaurante.id)
+    session.add(bebida)
+    session.commit()
+    
+    return render_template('cadastro.html',produto=bebida_nome)
+
+@app.route("/admin_page/refeicao/cadastrar" , methods=['POST'])
+def cadastrarRefeicaoBD():
+
+    restaurante_nome = request.form['restaurante_nome']
+    restaurante = session.query(Restaurante).filter_by(nome=restaurante_nome).one()
+
+    refeicao_nome = request.form['refeicao_nome']
+    refeicao_preco = request.form['refeicao_preco']
+    refeicao_preco = "R$"+refeicao_preco
+
+    refeicao = Refeicao(nome=refeicao_nome, preco=refeicao_preco, restaurante_id=restaurante.id)
+    session.add(refeicao)
+    session.commit()
+    
+    return render_template('cadastro.html',produto=refeicao_nome)
+
+@app.route("/admin_page/restaurante/cadastrar" , methods=['POST'])
+def cadastrarRestauranteBD():
+
+    restaurante_nome = request.form['restaurante_nome']
+
+    restaurante = Restaurante(nome=restaurante_nome)
+    session.add(restaurante)
+    session.commit()
+    
+    return render_template('cadastro.html',produto=restaurante)
+
 
 if __name__ == "__main__":
 
