@@ -1,53 +1,48 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Escolha sua refeição</title>
+    <title>App Proximo</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script type="text/javascript">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-coffee {font-size:180px}
+    </style>
 
-        function passarValores(restaurante){ 
-    
-        if (document.getElementById("restaurante_escolhido") != null) {
-        
-            document.getElementById("restaurante_escolhido").value  = restaurante ;
-        }
-    }
-    </script>
-</head>
 <body>
-    <h2>{{restaurante_escolhido}}</h2>
-    <form action="\ingrediente" method="POST">
+    <!-- Header -->
+    <header class="w3-container w3-red w3-center" style="padding:50px 8px">
+      <h1 class="w3-margin w3-jumbo">Menu do {{restaurante.nome}}</h1>
+    </header>
 
-        <p>Escolha a sua refeição <input list="refeicao" name="refeicao"></p>
+    <!-- Barra superior -->
+        <div class="w3-top">
+          <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="hello()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+            <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-white">Login</a>
+            <a href="/listar_pedidos" class="w3-bar-item w3-button w3-padding-large w3-white">Ver Pedidos</a>
+          </div>
+         </div>
 
-        <datalist id="refeicao">
-                <option value = "Filé de frango">
-                <option value = "Lasanha">
-                <option value = "Macarrão com Almôndegas">    
-        </datalist>
-           
-        <p>Bebida <input list="bebida" name="bebida"></p>
-
-        <datalist id="bebida">
-                <option value = "Coca-Cola">
-                <option value = "H20 Limoneto">
-                <option value = "Suco de Laranja">    
-        </datalist>
-
-        <input type="hidden" id="restaurante_escolhido" name="restaurante_escolhido" value=""/>
-
-        <script>
-            var restaurante_escolhido = '{{ restaurante_escolhido }}' ;
-            passarValores( restaurante_escolhido );
-        </script>
-
-
-        <input value="Comprar" type="submit">
-
-
-    </form>
+    <!-- Pratos -->
+    <div class="w3-row-padding w3-padding-64 w3-container">
+        <div class="w3-content">
+            <div class="w3-twothird">
+              <h1>Pratos</h1>
+              <h5 class="w3-padding-32">
+              		<div class="Pratos">
+        			<ul class="list">
+        			    {%for item in refeicao%}
+					        <li><span id="nome">{{item.nome}}</span> <span id="preco">{{item.preco}}</span></li>
+					        <a href="{{url_for('mostrarBebida', restaurante_id=restaurante.id, refeicao_id=item.id)}}">Comprar</a>
+			            {%endfor%}
+        			</ul>
+        	        </div>
+            </div>
+        </div>
+    </div>    
 </body>
-</html>

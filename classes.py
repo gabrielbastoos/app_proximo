@@ -1,46 +1,105 @@
-# -*- coding: utf-8 -*-
-class Cliente:
-    
-    def __init__(self,nome,cpf,refeicao,pagamento):
-        self.nome = nome
-        self.cpf = cpf
-        self.pagamento = pagamento
-        self.refeicao = refeicao
+import sys
+from sqlalchemy import create_engine, Column, ForeignKey, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
-class Refeicao:
-    def __init__(self,nome,ingredientes):
-        self.nome = nome
-        self.ingredientes = ingredientes
+Base = declarative_base()
 
-class Bebida:
-    def __init__(self, nome):
-        self.nome = nome
+class Usuario(Base):
+	__tablename__ = 'usuario'
 
-class Restaurante:
-    def __init__(self,nome):
-        self.nome = nome
+	id = Column(Integer, primary_key=True)
+	name = Column(String(250), nullable=False)
+	password = Column(String(250), nullable=False)
 
-    def incluir_prato(self):
-        quant_pratos = input("Quantos pratos serão incluídos?")
-        for a in range(0, quant_pratos):
-            nome = input("Qual nome do prato ?")
-            quant_ingredientes = input("Qual a quantidade de ingredientes?")
-            for b in range(0,quant_ingredientes):
-                ingredientes[b] = input("Ingrediente %i: " %b)
-            print(ingredientes)
-            prato[a] = Refeicao(nome,ingredientes)    
-            #Arquivar objeto !!!!!!!
+	@property
+	def serialize(self):
+		return {
+		'id': self.id,
+		'name': self.name,
+		'password': self.password,
+		}
 
-        print(" Pratos incluídos com sucesso\nTotal de %i pratos" %quant_pratos)
-        
-        return prato
-    
-    def incluir_bebida(self):
-        quant_bebidas = input("Quantas bebidas serão incluídas?")
-        for a in range(0, quant_bebidas):
-            nome = input("Qual nome da bebida %i?" %a)
-            bebida[a] = Bebida(nome)
+class Cliente(Base):
+	__tablename__ = 'cliente'
 
-        print(" Bebidas incluídas com sucesso\nTotal de %i bebidas" %quant_bebidas)
+	id = Column(Integer, primary_key=True)
+	nome = Column(String(250), nullable=False)
+	cpf = Column(Integer, nullable=False)
+	pagamento = Column(String(250), nullable=False)
+	obs = Column(String(250))
+	pedido = Column(String(250),nullable=False)
+	preco_pedido = Column(Integer,nullable=False)
+	data_pedido = Column(String(250), nullable=False)
+	hora_pedido = Column(String(250), nullable=False)
+	restaurante_id = Column(Integer, ForeignKey('restaurante.id'))
 
-        return bebida   
+	@property
+	def serialize(self):
+		return {
+		'id': self.id,
+		'nome': self.nome,
+		'cpf': self.cpf,
+		'pagamento': self.pagamento,
+		'obs' :self.obs,
+		'pedido': self.pedido,
+		'preco_pedido': self.preco_pedido,
+		'data_pedido':self.data_pedido,
+		'hora_pedido':self.hora_pedido,
+		'restaurante_id': self.restaurante_id
+		}
+
+class Restaurante(Base):
+	__tablename__ = 'restaurante'
+	id = Column(Integer, primary_key=True)
+	nome = Column(String(250), nullable=False)
+	@property
+	def serialize(self):
+		return {
+		'id': self.id,
+		'nome': self.nome
+		}
+
+class Refeicao(Base):
+	__tablename__ = 'refeicao'
+
+	id = Column(Integer, primary_key=True)
+	nome = Column(String(250), nullable=False)
+	preco = Column(String(25), nullable=False)
+	restaurante_id = Column(Integer, ForeignKey('restaurante.id'))
+	restaurante = relationship(Restaurante)
+
+	@property
+	def serialize(self):
+		return {
+		'id': self.id,
+		'nome': self.nome,
+		'preco': self.preco,
+		'restaurante_id': self.restaurante_id
+		}
+
+
+class Bebida(Base):
+	__tablename__ = 'bebida'
+
+	id = Column(Integer, primary_key=True)
+	nome = Column(String(250), nullable=False)
+	preco = Column(String(25), nullable=False)
+	restaurante_id = Column(Integer, ForeignKey('restaurante.id'))
+	restaurante = relationship(Restaurante)
+
+	@property
+	def serialize(self):
+		return {
+		'id': self.id,
+		'nome': self.nome,
+		'preco': self.preco,
+		'restaurante_id': self.restaurante_id
+		}
+
+#engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
+#engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
+#engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
+
+Base.metadata.create_all(engine)
