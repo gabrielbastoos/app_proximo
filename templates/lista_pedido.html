@@ -33,18 +33,19 @@
     <div class="w3-content">
       <div class="w3-twothird">
         <h1>{{ restaurante.nome }}</h1>
+        Visualizando pedido da data: {{data_atual}}
         <h5 class="w3-padding-32">
                 <div class="restaurantsList">
               <ul class="list">
                   {%for cliente in pedidos%}
+                    {%if cliente.data_pedido == data_atual%}
                       <li><span>Nome:{{cliente.nome}}</span><br>
                         <span>{{cliente.pedido}}</span><br>
                         <span>Obs:{{cliente.obs}}</span><br>
                         <span>Valor:R$ {{cliente.preco_pedido}} </span><br>
                         <span>Forma de Pagamento: {{cliente.pagamento}} </span><br>
                       </li>
-
-                      <hr>
+                    {%endif%}
                   {%endfor%}
               </ul>
           </div>

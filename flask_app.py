@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import sys
 from datetime import datetime
 from flask import Flask, request, redirect, url_for, flash, render_template, jsonify
@@ -17,20 +19,6 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-#verdinho = classes.Restaurante("Verdinho")
-#verdinho.incluir_prato()
-#verdinho.incluir_bedida()
-
-#spobreto = classes.Restaurante("Spobreto")
-#spobreto.incluir_prato()
-#spobreto.incluir_bebida()
-
-#burguesao = classes.Restaurante("Burguesao")
-#burguesao.incluir_prato()
-#burguesao.incluir_bebida()
-
-
-
 @app.route("/")
 @app.route('/#')
 @app.route('/restaurantes/')
@@ -47,6 +35,8 @@ def selecionar_restaurante():
 def visualizar_pedidos(restaurante_id):
 
     timestamp = datetime.now().date()
+    timestamp = timestamp.strftime('%d/%m/%Y')
+    timestamp = str(timestamp)
     restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
     pedidos = session.query(Cliente).filter_by(restaurante_id=restaurante_id).all()
 
@@ -107,7 +97,10 @@ def pedido():
     preco = (float(refeicao.preco.replace("R$","")) + float(bebida.preco.replace("R$","")))
 
     time = datetime.now().time()
+    time = str(time)
     data = datetime.now().date()
+    data = data.strftime('%d/%m/%Y')
+    data = str(data)
 
     cliente = Cliente(nome=nome, cpf=cpf, pagamento=pagamento, obs=obs, preco_pedido = preco, pedido=pedido, data_pedido=data, hora_pedido=time, restaurante_id=restaurante.id)
     session.add(cliente)
@@ -194,7 +187,10 @@ def cadastrarRestauranteBD():
 
     return render_template('cadastro.html',produto=restaurante_nome)
 
+session.close()
+session.rollback()
 
 #if __name__ == "__main__":
 
   #  app.run(host="0.0.0.0", debug=True)
+
