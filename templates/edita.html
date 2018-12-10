@@ -15,7 +15,7 @@
 
 <!-- Header -->
     <header class="w3-container w3-red w3-center" style="padding:50px 16px">
-      <h1 class="w3-margin w3-jumbo">App Próximo</h1>
+      <h1 class="w3-margin w3-jumbo">Deletar do {{restaurante.nome}}</h1>
     </header>
 
     <body>
@@ -31,27 +31,36 @@
 <!-- Corpo -->
 
         <div class="w3-row-padding w3-padding-64 w3-container">
-          <div class="w3-content">
+        <div class="w3-content">
             <div class="w3-twothird">
-              <h1>Catálogo de Restaurantes</h1>
+              <h1>Pratos</h1>
               <h5 class="w3-padding-32">
-              		<div class="restaurantsList">
+              		<div class="Pratos">
+              		<form action="/admin_page/edita_refeicao" method="POST">
         			<ul class="list">
-        				{%for restaurante in restaurantes%}
-        					<li><span>{{restaurante.nome}}</span>
-        					<a href="{{url_for('mostrarRefeicao', restaurante_id=restaurante.id)}}">Menu</a>
-        					</li>
-        					<hr>
-        				{%endfor%}
+        			    {%for itemA in refeicao%}
+    				        <li><span id="nome">{{itemA.nome}}</span> <span id="preco">{{itemA.preco}}</span>
+					        <button type="submit" name="refeicao_escolhida" value='{{ itemA.id }}'>Editar</button><hr>
+					        </li>
+			            {%endfor%}
         			</ul>
-        		</div>
-              </h5>
+        			</form>
+        	        </div>
+        	   <h1>Bebidas</h1>
+               <h5 class="w3-padding-32">
+              		<div class="Bebidas">
+              		<form action="/admin_page/edita_bebida" method="POST">
+        			<ul class="list">
+        			    {%for itemB in bebida%}
+					        <li><span id="nome">{{itemB.nome}}</span> <span id="preco">{{itemB.preco}}</span>
+					        <button type="submit" name="bebida_escolhida" value='{{ itemB.id }}'>Editar</button><hr>
+					        </li>
+			            {%endfor%}
+        			</ul>
+        			</form>
+        	        </div>
             </div>
-
-            <div class="w3-third w3-center">
-              <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
-            </div>
-          </div>
         </div>
+    </div>
     </body>
 </html>

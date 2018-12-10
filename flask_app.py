@@ -1,6 +1,4 @@
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 from datetime import datetime
 from flask import Flask, request, redirect, url_for, flash, render_template, jsonify
 app = Flask(__name__)
@@ -9,29 +7,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from classes import Base, Restaurante, Refeicao, Cliente, Bebida, Usuario
 
-engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
+#engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
 #engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
-#engine = create_engine('mysql+mysqldb://arthurbarcellos:P@ssw0rd@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$mylojas')
+engine = create_engine('mysql+mysqldb://arthurbarcellos:tutuskt0@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$newlojas')
 
 
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-
-#verdinho = classes.Restaurante("Verdinho")
-#verdinho.incluir_prato()
-#verdinho.incluir_bedida()
-
-#spobreto = classes.Restaurante("Spobreto")
-#spobreto.incluir_prato()
-#spobreto.incluir_bebida()
-
-#burguesao = classes.Restaurante("Burguesao")
-#burguesao.incluir_prato()
-#burguesao.incluir_bebida()
-
-
 
 @app.route("/")
 @app.route('/#')
@@ -43,15 +27,15 @@ def hello():
 @app.route("/listar_pedidos")
 def selecionar_restaurante():
     restaurantes = session.query(Restaurante).all()
-    return render_template('selecionarRestaurante.html', restaurantes=restaurantes) 
-    
+    return render_template('selecionarRestaurante.html', restaurantes=restaurantes)
+
 @app.route("/lista_pedido/<int:restaurante_id>/")
 def visualizar_pedidos(restaurante_id):
-    
+
     timestamp = datetime.now().date()
     restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
-    pedidos = session.query(Cliente).filter_by(restaurante_id=restaurante_id).all()
-        
+    pedidos = session.query(Cliente).filter_by(restaurante_id=restaurante.id).all()
+
     return render_template('lista_pedido.html', restaurante=restaurante, pedidos=pedidos,data_atual=timestamp)
 
 @app.route('/restaurantes/<int:restaurante_id>/')
@@ -117,6 +101,8 @@ def pedido():
 
     return render_template('fim.html',preco=preco)
 
+#---------------------------------------------------------------------------------------------------
+
 @app.route("/login")
 def pagina_login():
     return render_template('login.html')
@@ -125,18 +111,98 @@ def pagina_login():
 @app.route("/admin_page" , methods=['POST'])
 def pagina_admin():
 
+    restaurantes = session.query(Restaurante).all()
     username = request.form['username']
     password = request.form['password']
-    
+
     username_db = session.query(Usuario).filter_by(name=username).first()
 
     if(username_db == None):
         return render_template('login.html')
 
     if (username_db.password == password):
-        return render_template('admin.html')
+        return render_template('admin.html', restaurantes=restaurantes)
     else:
         return render_template('login.html')
+
+@app.route('/admin_page/<int:restaurante_id>')
+@app.route('/admin_page/<int:restaurante_id>/editar')
+def editar(restaurante_id):
+	restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+	refeicao = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
+	bebida = session.query(Bebida).filter_by(restaurante_id=restaurante.id)
+
+	return render_template('edita.html', restaurante=restaurante, refeicao=refeicao, bebida=bebida)
+
+@app.route("/admin_page/edita_refeicao", methods=['POST'])
+def editaRefeicao():
+    refeicao_escolhida_id = request.form['refeicao_escolhida']
+    refeicao = session.query(Refeicao).filter_by(id=refeicao_escolhida_id).one()
+
+    return render_template('editaRefeicao.html', refeicao=refeicao)
+
+@app.route("/admin_page/edita_refeicao/editado", methods=['POST'])
+def editadoRefeicao():
+    refeicao_escolhida_id = request.form['refeicao_editada']
+    refeicao = session.query(Refeicao).filter_by(id=refeicao_escolhida_id).one()
+    refeicao.nome=request.form['novo_nome']
+    refeicao.preco="R$"+request.form['novo_preco']
+
+    session.add(refeicao)
+    session.commit()
+
+    return render_template('editado.html')
+
+@app.route("/admin_page/edita_bebida", methods=['POST'])
+def editaBebida():
+    bebida_escolhida_id = request.form['bebida_escolhida']
+    bebida = session.query(Bebida).filter_by(id=bebida_escolhida_id).one()
+
+    return render_template('editaBebida.html', bebida=bebida)
+
+@app.route("/admin_page/edita_bebida/editado", methods=['POST'])
+def editadoBebida():
+    bebida_escolhida_id = request.form['bebida_editada']
+    bebida = session.query(Bebida).filter_by(id=bebida_escolhida_id).one()
+    bebida.nome=request.form['novo_nome']
+    bebida.preco="R$"+request.form['novo_preco']
+
+    session.add(bebida)
+    session.commit()
+    return render_template('editado.html')
+
+@app.route('/admin_page/<int:restaurante_id>')
+@app.route('/admin_page/<int:restaurante_id>/deletar')
+def deletar(restaurante_id):
+	restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
+	refeicao = session.query(Refeicao).filter_by(restaurante_id=restaurante.id)
+	bebida = session.query(Bebida).filter_by(restaurante_id=restaurante.id)
+
+	return render_template('deleta.html', restaurante=restaurante, refeicao=refeicao, bebida=bebida)
+
+@app.route("/admin_page/deletado_refeicao", methods=['POST'])
+def deletaRefeicao():
+    refeicao_escolhida_id = request.form['refeicao_escolhida']
+    refeicao = session.query(Refeicao).filter_by(id=refeicao_escolhida_id).one()
+
+    session.delete(refeicao)
+    session.commit()
+
+    return render_template('deletado.html')
+
+@app.route("/admin_page/deletado_bebida", methods=['POST'])
+def deletaBebida():
+
+    bebida_escolhida_id = request.form['bebida_escolhida']
+    bebida = session.query(Bebida).filter_by(id=bebida_escolhida_id).one()
+
+    session.delete(bebida)
+    session.commit()
+
+    return render_template('deletado.html')
+
+
+#-------------------------------------------------------------------------------------------------------
 
 @app.route("/admin_page/cadastrarRestaurante")
 def cadastrarRestaurante():
@@ -166,7 +232,7 @@ def cadastrarBebidaBD():
     bebida = Bebida(nome=bebida_nome, preco=bebida_preco, restaurante_id=restaurante.id)
     session.add(bebida)
     session.commit()
-    
+
     return render_template('cadastro.html',produto=bebida_nome)
 
 @app.route("/admin_page/refeicao/cadastrar" , methods=['POST'])
@@ -182,7 +248,7 @@ def cadastrarRefeicaoBD():
     refeicao = Refeicao(nome=refeicao_nome, preco=refeicao_preco, restaurante_id=restaurante.id)
     session.add(refeicao)
     session.commit()
-    
+
     return render_template('cadastro.html',produto=refeicao_nome)
 
 @app.route("/admin_page/restaurante/cadastrar" , methods=['POST'])
@@ -193,10 +259,9 @@ def cadastrarRestauranteBD():
     restaurante = Restaurante(nome=restaurante_nome)
     session.add(restaurante)
     session.commit()
-    
+
     return render_template('cadastro.html',produto=restaurante_nome)
 
 
-if __name__ == "__main__":
-
-    app.run(host="0.0.0.0", debug=True)
+#if (__name__ == "__main__"):
+ #   app.run(host="0.0.0.0", debug=True)

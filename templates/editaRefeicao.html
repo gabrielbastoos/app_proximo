@@ -15,7 +15,7 @@
 
 <!-- Header -->
     <header class="w3-container w3-red w3-center" style="padding:50px 16px">
-      <h1 class="w3-margin w3-jumbo">App Próximo</h1>
+      <h1 class="w3-margin w3-jumbo">Editar Refeição</h1>
     </header>
 
     <body>
@@ -24,34 +24,20 @@
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="hello()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             <a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
             <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-white">Login</a>
-            <a href="/listar_pedidos" class="w3-bar-item w3-button w3-padding-large w3-white">Ver Pedidos</a>
-          </div>
+            <a href="/listar_pedidos" class="w3-bar-item w3-button w3-padding-large w3-white">Ver Pedidos</a>          </div>
          </div>
 
-<!-- Corpo -->
+         <form action="/admin_page/edita_refeicao/editado" method="POST">
 
-        <div class="w3-row-padding w3-padding-64 w3-container">
-          <div class="w3-content">
-            <div class="w3-twothird">
-              <h1>Catálogo de Restaurantes</h1>
-              <h5 class="w3-padding-32">
-              		<div class="restaurantsList">
-        			<ul class="list">
-        				{%for restaurante in restaurantes%}
-        					<li><span>{{restaurante.nome}}</span>
-        					<a href="{{url_for('mostrarRefeicao', restaurante_id=restaurante.id)}}">Menu</a>
-        					</li>
-        					<hr>
-        				{%endfor%}
-        			</ul>
-        		</div>
-              </h5>
-            </div>
+          <p>Nome da Refeição: <input type="text" name="novo_nome"> </p>
 
-            <div class="w3-third w3-center">
-              <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
-            </div>
-          </div>
-        </div>
+          <p>Valor da Refeição: <input type="text" name="novo_preco"> </p>
+
+          <p><button type="submit" name="refeicao_editada" value={{refeicao.id}}>Editar</button> </p>
+
+         </form>
+
+
+
     </body>
 </html>
