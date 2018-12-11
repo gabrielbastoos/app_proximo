@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import sys
 from datetime import datetime
 from flask import Flask, request, redirect, url_for, flash, render_template, jsonify
@@ -10,11 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from classes import Base, Restaurante, Refeicao, Cliente, Bebida, Usuario
 
 #engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
-<<<<<<< HEAD
 #engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
-=======
-engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
->>>>>>> 156b3f91dbe29820080d8c283d5a5eeaa34d9050
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 engine = create_engine('mysql+mysqldb://arthurbarcellos:tutuskt0@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$newlojas')
 
@@ -42,11 +36,7 @@ def visualizar_pedidos(restaurante_id):
     timestamp = timestamp.strftime('%d/%m/%Y')
     timestamp = str(timestamp)
     restaurante = session.query(Restaurante).filter_by(id=restaurante_id).one()
-<<<<<<< HEAD
     pedidos = session.query(Cliente).filter_by(restaurante_id=restaurante.id).all()
-=======
-    pedidos = session.query(Cliente).filter_by(restaurante_id=restaurante_id).all()
->>>>>>> 156b3f91dbe29820080d8c283d5a5eeaa34d9050
 
     return render_template('lista_pedido.html', restaurante=restaurante, pedidos=pedidos,data_atual=timestamp)
 
@@ -274,22 +264,9 @@ def cadastrarRestauranteBD():
     restaurante = Restaurante(nome=restaurante_nome)
     session.add(restaurante)
     session.commit()
-<<<<<<< HEAD
 
     return render_template('cadastro.html',produto=restaurante_nome)
 
 
 #if (__name__ == "__main__"):
  #   app.run(host="0.0.0.0", debug=True)
-=======
-
-    return render_template('cadastro.html',produto=restaurante_nome)
-
-session.close()
-session.rollback()
-
-#if __name__ == "__main__":
-
-  #  app.run(host="0.0.0.0", debug=True)
-
->>>>>>> 156b3f91dbe29820080d8c283d5a5eeaa34d9050

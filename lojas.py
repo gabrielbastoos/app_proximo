@@ -4,11 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from classes import Base, Cliente, Restaurante, Refeicao, Bebida
 
 #engine = create_engine("mysql+mysqldb://root:password@localhost/app_proximo")
-<<<<<<< HEAD
 #engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
-=======
-engine = create_engine('mysql+mysqldb://gabrielbastoos:mysqlpassword@gabrielbastoos.mysql.pythonanywhere-services.com/gabrielbastoos$default')
->>>>>>> 156b3f91dbe29820080d8c283d5a5eeaa34d9050
 #engine = create_engine('mysql+mysqldb://caroluchoa:xcsdwe23@caroluchoa.mysql.pythonanywhere-services.com/caroluchoa$restaurants')
 engine = create_engine('mysql+mysqldb://arthurbarcellos:tutuskt0@arthurbarcellos.mysql.pythonanywhere-services.com/arthurbarcellos$newlojas')
 
