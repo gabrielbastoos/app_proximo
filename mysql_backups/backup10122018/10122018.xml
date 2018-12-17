@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="arthurbarcellos$newlojas">
+	<table_data name="cliente">
+	<row>
+		<field name="id">1</field>
+		<field name="nome">arthur</field>
+		<field name="cpf">2147483647</field>
+		<field name="pagamento">Cartao de Credito</field>
+		<field name="obs">tira arroz</field>
+		<field name="pedido">Refeicao: Carne Assada com Fritas   Bebida: Coca Cola</field>
+		<field name="preco_pedido">19</field>
+		<field name="data_pedido">2018-10-29</field>
+		<field name="hora_pedido">07:31:39.309633</field>
+		<field name="restaurante_id">1</field>
+	</row>
+	<row>
+		<field name="id">2</field>
+		<field name="nome">lucas</field>
+		<field name="cpf">11111</field>
+		<field name="pagamento">d</field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Lasanha de Frango   Bebida: Suco</field>
+		<field name="preco_pedido">20</field>
+		<field name="data_pedido">2018-10-29</field>
+		<field name="hora_pedido">07:32:36.785883</field>
+		<field name="restaurante_id">2</field>
+	</row>
+	<row>
+		<field name="id">3</field>
+		<field name="nome">a</field>
+		<field name="cpf">222</field>
+		<field name="pagamento">Dinheiro</field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Lasanha de Frango   Bebida: Guarana</field>
+		<field name="preco_pedido">19</field>
+		<field name="data_pedido">2018-10-29</field>
+		<field name="hora_pedido">07:55:38.696184</field>
+		<field name="restaurante_id">2</field>
+	</row>
+	<row>
+		<field name="id">4</field>
+		<field name="nome">teste</field>
+		<field name="cpf">444</field>
+		<field name="pagamento">Cartao de Debito</field>
+		<field name="obs">carne</field>
+		<field name="pedido">Refeicao: Frango a Parmegiana com Fritas   Bebida: Suco</field>
+		<field name="preco_pedido">20</field>
+		<field name="data_pedido">2018-10-29</field>
+		<field name="hora_pedido">08:00:33.399554</field>
+		<field name="restaurante_id">2</field>
+	</row>
+	<row>
+		<field name="id">5</field>
+		<field name="nome">A</field>
+		<field name="cpf">1</field>
+		<field name="pagamento">Cartao</field>
+		<field name="obs">Nao</field>
+		<field name="pedido">Refeicao: Penne Carbonara   Bebida: Guarana</field>
+		<field name="preco_pedido">19</field>
+		<field name="data_pedido">2018-10-29</field>
+		<field name="hora_pedido">12:12:39.743451</field>
+		<field name="restaurante_id">2</field>
+	</row>
+	<row>
+		<field name="id">6</field>
+		<field name="nome">Arthur</field>
+		<field name="cpf">2147483647</field>
+		<field name="pagamento">Cartao de Credito</field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Carne Assada com Fritas   Bebida: Suco</field>
+		<field name="preco_pedido">20</field>
+		<field name="data_pedido">2018-10-29</field>
+		<field name="hora_pedido">19:34:07.413237</field>
+		<field name="restaurante_id">1</field>
+	</row>
+	<row>
+		<field name="id">7</field>
+		<field name="nome">Eduardo Barcellos</field>
+		<field name="cpf">554385716</field>
+		<field name="pagamento">Dinheiro</field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Carne Assada com Fritas   Bebida: Guarana</field>
+		<field name="preco_pedido">19</field>
+		<field name="data_pedido">2018-10-30</field>
+		<field name="hora_pedido">02:17:32.350000</field>
+		<field name="restaurante_id">1</field>
+	</row>
+	<row>
+		<field name="id">8</field>
+		<field name="nome">sonia</field>
+		<field name="cpf">1420398709</field>
+		<field name="pagamento">Cartao de Debito</field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Nhoque a Bolonhesa   Bebida: Suco</field>
+		<field name="preco_pedido">23</field>
+		<field name="data_pedido">2018-11-01</field>
+		<field name="hora_pedido">16:10:01.537742</field>
+		<field name="restaurante_id">3</field>
+	</row>
+	<row>
+		<field name="id">9</field>
+		<field name="nome"></field>
+		<field name="cpf">0</field>
+		<field name="pagamento"></field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Strogonoff com Fritas   Bebida: Guarana</field>
+		<field name="preco_pedido">17</field>
+		<field name="data_pedido">2018-12-09</field>
+		<field name="hora_pedido">20:31:26.507827</field>
+		<field name="restaurante_id">1</field>
+	</row>
+	<row>
+		<field name="id">10</field>
+		<field name="nome"></field>
+		<field name="cpf">0</field>
+		<field name="pagamento"></field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Strogonoff com Fritas   Bebida: Guarana</field>
+		<field name="preco_pedido">17</field>
+		<field name="data_pedido">2018-12-09</field>
+		<field name="hora_pedido">20:31:49.920985</field>
+		<field name="restaurante_id">1</field>
+	</row>
+	<row>
+		<field name="id">11</field>
+		<field name="nome">carol</field>
+		<field name="cpf">1211212122</field>
+		<field name="pagamento">Cartao de Credito</field>
+		<field name="obs">arroz</field>
+		<field name="pedido">Refeicao: Strogonoff com Fritas   Bebida: Guarana</field>
+		<field name="preco_pedido">17</field>
+		<field name="data_pedido">2018-12-09</field>
+		<field name="hora_pedido">22:25:37.113170</field>
+		<field name="restaurante_id">1</field>
+	</row>
+	<row>
+		<field name="id">12</field>
+		<field name="nome">Gabriel</field>
+		<field name="cpf">7</field>
+		<field name="pagamento">Cartao de Debito</field>
+		<field name="obs"></field>
+		<field name="pedido">Refeicao: Penne Carbonara   Bebida: Coca Cola</field>
+		<field name="preco_pedido">19</field>
+		<field name="data_pedido">2018-12-09</field>
+		<field name="hora_pedido">22:26:59.075674</field>
+		<field name="restaurante_id">2</field>
+	</row>
+	</table_data>
+</database>
+</mysqldump>
