@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Completo?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<script type="text/javascript">
+
+    function passarValores(bebida,refeicao,restaurante){ 
+    
+        document.getElementById("bebida_escolhida").value  = bebida ;
+        document.getElementById("refeicao_escolhida").value  = refeicao ;
+        document.getElementById("restaurante_escolhido").value  = restaurante ;
+    
+}
+</script>
+<body>
+
+    <h1>{{ restaurante_escolhido }}</h1>
+
+    <h2><p> {{ refeicao_escolhida }} com {{ bebida_escolhida }}</p></h2>
+
+    <form action="\dados" method="POST">
+
+        <h3><p>Deseja acrescentar algo ?</p></h3>
+
+        <p>Arroz<input type="checkbox" name="arroz"></p>
+        <p>Feijão<input type="checkbox" name="feijao"></p>
+        <p>Tomate<input type="checkbox" name="tomate"></p>
+        <p>Alface<input type="checkbox" name="alface"></p>
+        <p>Batata Frita<input type="checkbox" name="batatafrita"></p>
+        <p>Ovo Frito<input type="checkbox" name="ovofrito"></p>
+        <p>Farofa<input type="checkbox" name="farofa"></p>
+        <p>Cenoura<input type="checkbox" name="cenoura"></p>
+
+        <input type="hidden" id="refeicao_escolhida" name="refeicao_escolhida" value=""/>
+
+        <input type="hidden" id="bebida_escolhida" name="bebida_escolhida" value=""/>
+        
+        <input type="hidden" id="restaurante_escolhido" name="restaurante_escolhido" value=""/>
+    
+    <script>
+        var bebida_escolhida = '{{ bebida_escolhida }}' ;
+        var refeicao_escolhida = '{{ refeicao_escolhida }}';
+        var restaurante_escolhido = '{{ restaurante_escolhido }}'
+        passarValores( bebida_escolhida, refeicao_escolhida, restaurante_escolhido );
+    </script>
+
+        <input type="submit" value="Enviar pedido">
+
+    </form>
+
+
+
+</body>
+
+</html>

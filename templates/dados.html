@@ -39,6 +39,19 @@
                     <option value = "Cartao de Credito">
                     <option value = "Cartao de Debito">
                 </datalist>
+                
+                <input type="hidden" id="refeicao_escolhida" name="refeicao_escolhida" value=""/>
+
+                <input type="hidden" id="bebida_escolhida" name="bebida_escolhida" value=""/>
+
+                <input type="hidden" id="restaurante_escolhido" name="restaurante_escolhido" value=""/>
+
+                <script>
+                    var bebida_escolhida = '{{ bebida_escolhida }}' ;
+                    var refeicao_escolhida = '{{ refeicao_escolhida }}';
+                    var restaurante_escolhido = '{{ restaurante_escolhido }}'
+                    passarValores( bebida_escolhida, refeicao_escolhida, restaurante_escolhido );
+                </script>
 
                 <p>Observação: <input type="text" name = "obs" value="Deseja tirar algo ?"></p>
 
